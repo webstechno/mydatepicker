@@ -1,60 +1,99 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>mydatepicker by kekeh</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-dark.css">
+
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="https://code.angularjs.org/tools/typescript.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-alpha.46/angular2.dev.js"></script>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-  </head>
-  <body>
 
-      <header>
-        <h1>mydatepicker</h1>
-        <p>AngularJS 2 date picker</p>
-      </header>
+    <script>
+        System.config({
+            packages: {'ts': {defaultExtension: 'ts'}},
+            transpiler: 'typescript',
+            typescriptOptions: { emitDecoratorMetadata: true }
+        });
+        System.import('ts/sampleapp');
+    </script>
 
-      <div id="banner">
-        <span id="logo"></span>
+</head>
+<body>
 
-        <a href="https://github.com/kekeh/mydatepicker" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
+<header>
+    <h1>mydatepicker</h1>
+
+    <p>AngularJS 2 date picker</p>
+</header>
+
+<div id="banner">
+    <span id="logo"></span>
+
+    <a href="https://github.com/kekeh/mydatepicker" class="button fork"><strong>View On GitHub</strong></a>
+
+    <div class="downloads">
+        <span>Downloads:</span>
+        <ul>
             <li><a href="https://github.com/kekeh/mydatepicker/zipball/master" class="button">ZIP</a></li>
             <li><a href="https://github.com/kekeh/mydatepicker/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h1>
-<a id="mydatepicker-v-001" class="anchor" href="#mydatepicker-v-001" aria-hidden="true"><span class="octicon octicon-link"></span></a>mydatepicker v. 0.0.1</h1>
-
-<p><strong>AngularJS 2 date picker - AngularJS reusable UI component</strong></p>
-
-<h2>
-<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
-
-<p>Simple AngularJS 2 date picker. Uses version "2.0.0-alpha.46" of AngularJS 2.</p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/kekeh">kekeh</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
+        </ul>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+</div><!-- end banner -->
+
+<div class="wrapper">
+    <nav>
+        <ul></ul>
+    </nav>
+    <section>
+        <h1>
+            <a id="mydatepicker-v-001" class="anchor" href="#mydatepicker-v-001" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>mydatepicker v. 0.0.1</h1>
+
+        <p><strong>AngularJS 2 date picker - AngularJS reusable UI component</strong></p>
+
+        <h2>
+            <a id="description" class="anchor" href="#description" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Description</h2>
+
+        <p>Simple AngularJS 2 date picker. Uses version "2.0.0-alpha.46" of AngularJS 2.</p>
+
+
+        <sample-date-picker>loading...</sample-date-picker>
+
+
+
+        <ul style="margin-top: 40px">
+            <li>Source of the component is <a href="http://kekeh.github.io/kekeh/mydatepicker" target="_blank">here</a></li>
+            <li>See all of my AngularJS 1 UI components from <a href="http://kekeh.github.io" target="_blank">here</a></li>
+        </ul>
+
+
+
+
+    </section>
+    <footer>
+        <p>Project maintained by <a href="https://github.com/kekeh">kekeh</a></p>
+
+        <p>
+            <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a>
+            </small>
+        </p>
+    </footer>
+</div>
+<!--[if !IE]>
+<script>fixScale(document);</script><![endif]-->
+
+</body>
 </html>
