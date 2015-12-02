@@ -1,14 +1,14 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
-    switch (arguments.length) {
-        case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
-        case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
-        case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
-    }
-};
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
+        switch (arguments.length) {
+            case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
+            case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
+            case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
+        }
+    };
 var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
 var angular2_1 = require('angular2/angular2');
 var MyDatePicker = (function () {
     function MyDatePicker() {
@@ -33,6 +33,8 @@ var MyDatePicker = (function () {
         this.today = new Date();
     }
     MyDatePicker.prototype.onInit = function () {
+        this.dayLabels = this.options.dayLabels !== undefined ? this.options.dayLabels : this.dayLabels;
+        this.monthLabels = this.options.monthLabels !== undefined ? this.options.monthLabels : this.monthLabels;
         this.dateFormat = this.options.dateFormat !== undefined ? this.options.dateFormat : this.dateFormat;
         this.firstDayOfWeek = this.options.firstDayOfWeek !== undefined ? this.options.firstDayOfWeek : this.firstDayOfWeek;
         this.sunHighlight = this.options.sunHighlight !== undefined ? this.options.sunHighlight : this.sunHighlight;
@@ -50,14 +52,21 @@ var MyDatePicker = (function () {
     };
     MyDatePicker.prototype.removeBtnClicked = function () {
         this.selectionDayTxt = '';
-        this.selectedDate = {};
-        this.dateChanged.next({ date: {}, formatted: this.selectionDayTxt });
+        this.selectedDate = { year: 0, month: 0, day: 0 };
+        this.dateChanged.next({ date: {}, formatted: this.selectionDayTxt, epoc: 0 });
     };
     MyDatePicker.prototype.openBtnClicked = function () {
         this.showSelector = !this.showSelector;
         if (this.showSelector) {
-            var y = this.today.getFullYear();
-            var m = this.today.getMonth() + 1;
+            var y = 0, m = 0;
+            if (this.selectedDate.year === 0 && this.selectedDate.month === 0 && this.selectedDate.day === 0) {
+                y = this.today.getFullYear();
+                m = this.today.getMonth() + 1;
+            }
+            else {
+                y = this.selectedDate.year;
+                m = this.selectedDate.month;
+            }
             // Set current month
             this.visibleMonth = { monthTxt: this.monthLabels[m], monthNbr: m, year: y };
             // Create current month
@@ -115,7 +124,8 @@ var MyDatePicker = (function () {
             this.selectedDate = { day: cell.day, month: cell.month, year: cell.year };
             this.selectionDayTxt = this.formatDate(cell);
             this.showSelector = false;
-            this.dateChanged.next({ date: this.selectedDate, formatted: this.selectionDayTxt });
+            var epoc = new Date(cell.year, cell.month - 1, cell.day, 0, 0, 0, 0).getTime() / 1000.0;
+            this.dateChanged.next({ date: this.selectedDate, formatted: this.selectionDayTxt, epoc: epoc });
         }
         else if (cell.cmo === this.NEXT_MONTH) {
             // Next month of day
@@ -214,11 +224,11 @@ var MyDatePicker = (function () {
         }
     };
     __decorate([
-        angular2_1.Input(), 
+        angular2_1.Input(),
         __metadata('design:type', Object)
     ], MyDatePicker.prototype, "options");
     __decorate([
-        angular2_1.Output(), 
+        angular2_1.Output(),
         __metadata('design:type', Object)
     ], MyDatePicker.prototype, "dateChanged");
     MyDatePicker = __decorate([
@@ -229,7 +239,7 @@ var MyDatePicker = (function () {
             templateUrl: 'app/template/mydatepicker.html',
             styleUrls: ['app/css/mydatepicker.css'],
             directives: [angular2_1.NgIf, angular2_1.NgFor, angular2_1.NgClass, angular2_1.NgStyle]
-        }), 
+        }),
         __metadata('design:paramtypes', [])
     ], MyDatePicker);
     return MyDatePicker;
