@@ -1,41 +1,55 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
-        switch (arguments.length) {
-            case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
-            case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
-            case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
-        }
+System.register(['angular2/platform/browser', 'angular2/core', './mydatepicker'], function(exports_1) {
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-var __metadata = (this && this.__metadata) || function (k, v) {
+    var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-var angular2_1 = require('angular2/angular2');
-var mydatepicker_1 = require('./mydatepicker');
-var SampleDatePicker = (function () {
-    function SampleDatePicker() {
-        this.myDatePickerOptions = {
-            dateFormat: 'dd.mm.yyyy',
-            firstDayOfWeek: 'mo',
-            sunHighlight: true,
-            height: '34px',
-            width: '260px'
-        };
+    var browser_1, core_1, mydatepicker_1;
+    var SampleDatePicker;
+    return {
+        setters:[
+            function (browser_1_1) {
+                browser_1 = browser_1_1;
+            },
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
+            function (mydatepicker_1_1) {
+                mydatepicker_1 = mydatepicker_1_1;
+            }],
+        execute: function() {
+            SampleDatePicker = (function () {
+                function SampleDatePicker() {
+                    this.myDatePickerOptions = {
+                        dateFormat: 'dd.mm.yyyy',
+                        firstDayOfWeek: 'mo',
+                        sunHighlight: true,
+                        height: '34px',
+                        width: '260px'
+                    };
+                }
+                SampleDatePicker.prototype.onInit = function () {
+                    console.log('onInit(): SampleDatePicker');
+                };
+                SampleDatePicker.prototype.onDateChanged = function (event) {
+                    console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
+                };
+                SampleDatePicker = __decorate([
+                    core_1.Component({
+                        selector: 'sample-date-picker',
+                        template: "<my-date-picker [(options)]=\"myDatePickerOptions\" (date-changed)=\"onDateChanged($event)\"></my-date-picker>",
+                        directives: [mydatepicker_1.MyDatePicker]
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], SampleDatePicker);
+                return SampleDatePicker;
+            })();
+            browser_1.bootstrap(SampleDatePicker);
+        }
     }
-    SampleDatePicker.prototype.onInit = function () {
-        console.log('onInit(): SampleDatePicker');
-    };
-    SampleDatePicker.prototype.onDateChanged = function (event) {
-        console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
-    };
-    SampleDatePicker = __decorate([
-        angular2_1.Component({
-            selector: 'sample-date-picker',
-            template: "<my-date-picker [(options)]=\"myDatePickerOptions\" (date-changed)=\"onDateChanged($event)\"></my-date-picker>",
-            directives: [mydatepicker_1.MyDatePicker]
-        }),
-        __metadata('design:paramtypes', [])
-    ], SampleDatePicker);
-    return SampleDatePicker;
-})();
-angular2_1.bootstrap(SampleDatePicker);
+});
 //# sourceMappingURL=sampleapp.js.map
