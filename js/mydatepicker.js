@@ -1,13 +1,13 @@
 System.register(['angular2/core', 'angular2/common'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
+            var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+            if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+            else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+            return c > 3 && r && Object.defineProperty(target, key, r), r;
+        };
     var __metadata = (this && this.__metadata) || function (k, v) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-    };
+            if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+        };
     var core_1, common_1;
     var MyDatePicker;
     return {
@@ -29,6 +29,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     this.dates = [];
                     this.selectionDayTxt = '';
                     this.dayIdx = 0;
+                    this.today = null;
                     this.PREV_MONTH = 1;
                     this.CURR_MONTH = 2;
                     this.NEXT_MONTH = 3;
@@ -57,6 +58,18 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                             this.weekDays.push(this.dayLabels[days[idx]]);
                             idx = days[idx] === 'sa' ? 0 : idx + 1;
                         }
+                    }
+                };
+                MyDatePicker.prototype.ngOnChanges = function (changes) {
+                    this.selectionDayTxt = changes['selDate'].currentValue;
+                    if (this.selectionDayTxt !== '') {
+                        var fmt = this.options.dateFormat !== undefined ? this.options.dateFormat : this.dateFormat;
+                        var dpos = fmt.indexOf('dd');
+                        var mpos = fmt.indexOf('mm');
+                        var ypos = fmt.indexOf('yyyy');
+                        this.selectedDate = { day: parseInt(this.selectionDayTxt.substring(dpos, dpos + 2)),
+                            month: parseInt(this.selectionDayTxt.substring(mpos, mpos + 2)),
+                            year: parseInt(this.selectionDayTxt.substring(ypos, ypos + 4)) };
                     }
                 };
                 MyDatePicker.prototype.removeBtnClicked = function () {
@@ -185,16 +198,12 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                         if (i === 1) {
                             var pm = dInPrevM - monthStart + 1;
                             for (var j = pm; j <= dInPrevM; j++) {
-                                week.push({
-                                    day: j, month: m, year: y, cmo: cmo, currDay: this.isCurrDay(j, m, y, cmo), sun: week.length === sunIdx
-                                });
+                                week.push({ day: j, month: m, year: y, cmo: cmo, currDay: this.isCurrDay(j, m, y, cmo), sun: week.length === sunIdx });
                             }
                             cmo = this.CURR_MONTH;
                             var daysLeft = 7 - week.length;
                             for (var j = 0; j < daysLeft; j++) {
-                                week.push({
-                                    day: dayNbr, month: m, year: y, cmo: cmo, currDay: this.isCurrDay(dayNbr, m, y, cmo), sun: week.length === sunIdx
-                                });
+                                week.push({ day: dayNbr, month: m, year: y, cmo: cmo, currDay: this.isCurrDay(dayNbr, m, y, cmo), sun: week.length === sunIdx });
                                 dayNbr++;
                             }
                         }
@@ -204,9 +213,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                                     dayNbr = 1;
                                     cmo = this.NEXT_MONTH;
                                 }
-                                week.push({
-                                    day: dayNbr, month: m, year: y, cmo: cmo, currDay: this.isCurrDay(dayNbr, m, y, cmo), sun: week.length === sunIdx
-                                });
+                                week.push({ day: dayNbr, month: m, year: y, cmo: cmo, currDay: this.isCurrDay(dayNbr, m, y, cmo), sun: week.length === sunIdx });
                                 dayNbr++;
                             }
                         }
@@ -214,11 +221,15 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     }
                 };
                 __decorate([
-                    core_1.Input(), 
+                    core_1.Input(),
                     __metadata('design:type', Object)
                 ], MyDatePicker.prototype, "options", void 0);
                 __decorate([
-                    core_1.Output(), 
+                    core_1.Input(),
+                    __metadata('design:type', String)
+                ], MyDatePicker.prototype, "selDate", void 0);
+                __decorate([
+                    core_1.Output(),
                     __metadata('design:type', core_1.EventEmitter)
                 ], MyDatePicker.prototype, "dateChanged", void 0);
                 MyDatePicker = __decorate([
@@ -229,7 +240,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                         templateUrl: 'app/template/mydatepicker.html',
                         styleUrls: ['app/css/mydatepicker.css'],
                         directives: [common_1.NgIf, common_1.NgFor, common_1.NgClass, common_1.NgStyle]
-                    }), 
+                    }),
                     __metadata('design:paramtypes', [])
                 ], MyDatePicker);
                 return MyDatePicker;
