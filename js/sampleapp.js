@@ -25,6 +25,7 @@ System.register(['angular2/platform/browser', 'angular2/core', './mydatepicker']
             SampleDatePicker = (function () {
                 function SampleDatePicker() {
                     this.myDatePickerOptions = {
+                        todayBtnTxt: 'Today',
                         dateFormat: 'dd.mm.yyyy',
                         firstDayOfWeek: 'mo',
                         sunHighlight: true,

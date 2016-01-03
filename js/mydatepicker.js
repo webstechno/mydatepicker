@@ -20,7 +20,9 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
             }],
         execute: function() {
             MyDatePicker = (function () {
-                function MyDatePicker() {
+                function MyDatePicker(elem) {
+                    var _this = this;
+                    this.elem = elem;
                     this.dateChanged = new core_1.EventEmitter();
                     this.showSelector = false;
                     this.visibleMonth = { monthTxt: '', monthNbr: 0, year: 0 };
@@ -36,16 +38,24 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     this.dayLabels = { su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat' };
                     this.monthLabels = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
                     this.dateFormat = 'yyyy-mm-dd';
+                    this.todayBtnTxt = 'Today';
                     this.firstDayOfWeek = 'mo';
                     this.sunHighlight = true;
                     this.height = '34px';
                     this.width = '100%';
                     this.today = new Date();
+                    var doc = document.getElementsByTagName('html')[0];
+                    doc.addEventListener('click', function (event) {
+                        if (_this.showSelector && event.target && _this.elem.nativeElement !== event.target && !_this.elem.nativeElement.contains(event.target)) {
+                            _this.showSelector = false;
+                        }
+                    }, false);
                 }
                 MyDatePicker.prototype.ngOnInit = function () {
                     this.dayLabels = this.options.dayLabels !== undefined ? this.options.dayLabels : this.dayLabels;
                     this.monthLabels = this.options.monthLabels !== undefined ? this.options.monthLabels : this.monthLabels;
                     this.dateFormat = this.options.dateFormat !== undefined ? this.options.dateFormat : this.dateFormat;
+                    this.todayBtnTxt = this.options.todayBtnTxt !== undefined ? this.options.todayBtnTxt : this.todayBtnTxt;
                     this.firstDayOfWeek = this.options.firstDayOfWeek !== undefined ? this.options.firstDayOfWeek : this.firstDayOfWeek;
                     this.sunHighlight = this.options.sunHighlight !== undefined ? this.options.sunHighlight : this.sunHighlight;
                     this.height = this.options.height !== undefined ? this.options.height : this.height;
@@ -128,24 +138,25 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     this.createMonth(this.visibleMonth.monthNbr, this.visibleMonth.year);
                 };
                 MyDatePicker.prototype.todayClicked = function () {
-                    var m = this.today.getMonth() + 1;
-                    this.visibleMonth = { monthTxt: this.monthText(m), monthNbr: m, year: this.today.getFullYear() };
-                    this.createMonth(this.visibleMonth.monthNbr, this.visibleMonth.year);
+                    this.selectDate({ day: this.today.getDate(), month: this.today.getMonth() + 1, year: this.today.getFullYear() });
                 };
                 MyDatePicker.prototype.cellClicked = function (cell) {
                     if (cell.cmo === this.PREV_MONTH) {
                         this.prevMonth();
                     }
                     else if (cell.cmo === this.CURR_MONTH) {
-                        this.selectedDate = { day: cell.day, month: cell.month, year: cell.year };
-                        this.selectionDayTxt = this.formatDate(cell);
-                        this.showSelector = false;
-                        var epoc = new Date(cell.year, cell.month - 1, cell.day, 0, 0, 0, 0).getTime() / 1000.0;
-                        this.dateChanged.emit({ date: this.selectedDate, formatted: this.selectionDayTxt, epoc: epoc });
+                        this.selectDate(cell);
                     }
                     else if (cell.cmo === this.NEXT_MONTH) {
                         this.nextMonth();
                     }
+                };
+                MyDatePicker.prototype.selectDate = function (date) {
+                    this.selectedDate = { day: date.day, month: date.month, year: date.year };
+                    this.selectionDayTxt = this.formatDate(date);
+                    this.showSelector = false;
+                    var epoc = new Date(date.year, date.month - 1, date.day, 0, 0, 0, 0).getTime() / 1000.0;
+                    this.dateChanged.emit({ date: this.selectedDate, formatted: this.selectionDayTxt, epoc: epoc });
                 };
                 MyDatePicker.prototype.preZero = function (val) {
                     return val < 10 ? '0' + val : val;
@@ -241,7 +252,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                         styleUrls: ['app/css/mydatepicker.css'],
                         directives: [common_1.NgIf, common_1.NgFor, common_1.NgClass, common_1.NgStyle]
                     }),
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [core_1.ElementRef])
                 ], MyDatePicker);
                 return MyDatePicker;
             })();
