@@ -5,7 +5,7 @@ const template: string = require('./sample-date-picker-normal.html');
 
 @Component({
     selector: 'sample-date-picker-normal',
-    template
+    template: template
 })
 
 export class SampleDatePickerNormal implements OnInit {
@@ -18,7 +18,7 @@ export class SampleDatePickerNormal implements OnInit {
         height: '34px',
         width: '260px'
     };
-    
+
     selectedText: string = '';
     border: string = 'none';
 
