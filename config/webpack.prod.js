@@ -24,7 +24,7 @@ module.exports = webpackMerge(commonConfig, {
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({ output: {comments: false}, mangle: { screw_ie8 : true, keep_fnames: true} }),
-        new ExtractTextPlugin('[name].css'),
+        //new ExtractTextPlugin('[name].css'),
         new webpack.DefinePlugin({
             'process.env': {
                 'ENV': JSON.stringify(ENV)

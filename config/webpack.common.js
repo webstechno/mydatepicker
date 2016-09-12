@@ -17,22 +17,18 @@ module.exports = {
 
     module: {
         loaders: [
-            { 
-                test: /\.ts$/, 
-                exclude: [/\.spec\.ts$/, /node_modules/], 
-                loader: 'ts' },
-            { 
-                test: /\.html$/, 
-                loader: 'raw' },
             {
-                test: /\.css$/,
-                exclude: helpers.root('src', 'app'),
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+                test: /\.ts$/,
+                exclude: [/\.spec\.ts$/],
+                loader: 'ts'
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw'
             },
             {
                 test: /\.css$/,
-                include: helpers.root('src', 'app'),
-                loader: 'raw'
+                loader: "to-string-loader!css-loader"
             }
         ]
     },
