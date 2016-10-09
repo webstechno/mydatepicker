@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
 
+    cache: false,
+
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
