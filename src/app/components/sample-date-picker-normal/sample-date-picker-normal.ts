@@ -12,7 +12,7 @@ export class SampleDatePickerNormal implements OnInit {
 
     private myDatePickerNormalOptions = {
         todayBtnTxt: 'Today',
-        dateFormat: 'dd.mm.yyyy',
+        dateFormat: 'dd mmm yyyy',
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         height: '34px',
