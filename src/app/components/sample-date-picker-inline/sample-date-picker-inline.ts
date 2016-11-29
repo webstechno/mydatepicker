@@ -28,14 +28,7 @@ export class SampleDatePickerInline implements OnInit {
 
     private locales:Array<string> = new Array('en', 'fr', 'ja', 'fi', 'es', 'hu', 'sv', 'nl', 'ru', 'no', 'tr', 'pt-br', 'de');
 
-    constructor() {
-        let date = new Date();
-        this.selectedDateInline = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
-
-        // Disable dates from 5th backward
-        date.setDate(date.getDate() - 5);
-        this.myDatePickerInlineOptions.disableUntil = {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
-    }
+    constructor() {}
 
     ngOnInit() {
         console.log('onInit(): SampleDatePickerInline');
@@ -43,6 +36,44 @@ export class SampleDatePickerInline implements OnInit {
 
     onChangeLocale(locale:string) {
         this.locale = locale;
+    }
+
+    onDisablePast(checked:boolean) {
+        let date = new Date();
+
+        // Disable/enable dates from 5th backward
+        date.setDate(date.getDate() - 5);
+
+        let copy = this.getCopyOfOptions();
+        copy.disableUntil = checked ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : {};
+        this.myDatePickerInlineOptions = copy;
+    }
+
+    onDisableFuture(checked:boolean) {
+        let date = new Date();
+
+        // Disable/enable dates from 5th forward
+        date.setDate(date.getDate() + 5);
+
+        let copy = this.getCopyOfOptions();
+        copy.disableSince = checked ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : {};
+        this.myDatePickerInlineOptions = copy;
+    }
+
+    onDisableSingleDates(checked:boolean) {
+        let date = new Date();
+
+        // Disable/enable next month 1st and 3rd days
+        let copy = this.getCopyOfOptions();
+        copy.disableDays = checked ? [{year: date.getFullYear(), month: date.getMonth() + 2, day: 1}, {year: date.getFullYear(), month: date.getMonth() + 2, day: 3}] : [];
+        this.myDatePickerInlineOptions = copy;
+    }
+
+    onDisableWeekends(checked:boolean) {
+        // Disable/enable weekends
+        let copy = this.getCopyOfOptions();
+        copy.disableWeekends = checked;
+        this.myDatePickerInlineOptions = copy;
     }
 
     onDateChanged(event:any) {
@@ -55,5 +86,9 @@ export class SampleDatePickerInline implements OnInit {
             this.selectedTextInline = '';
             this.border = 'none';
         }
+    }
+
+    getCopyOfOptions() {
+        return JSON.parse(JSON.stringify(this.myDatePickerInlineOptions));
     }
 }

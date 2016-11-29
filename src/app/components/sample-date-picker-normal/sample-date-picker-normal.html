@@ -1,10 +1,15 @@
 <div>
+    <ul>
+        <li>
+            <label>
+                <span>Disable component:</span>
+                <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)" [checked]=false>
+            </label>
+        </li>
+    </ul>
     <div style="padding:4px;border-radius:4px;margin-bottom:8px;float:right" [ngStyle]="{border: border}">
         {{selectedTextNormal}}
     </div>
-    <my-date-picker [options]="myDatePickerNormalOptions"
-                    (dateChanged)="onDateChanged($event)"
-                    (inputFieldChanged)="onInputFieldChanged($event)"
-                    (calendarViewChanged)="onCalendarViewChanged($event)"
+    <my-date-picker [options]="myDatePickerNormalOptions" (dateChanged)="onDateChanged($event)" (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
                     [selDate]="selectedDateNormal"></my-date-picker>
 </div>

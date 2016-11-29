@@ -18,7 +18,8 @@ export class SampleDatePickerNormal implements OnInit {
         height: '34px',
         width: '260px',
         selectionTxtFontSize: '18px',
-        alignSelectorRight: false
+        alignSelectorRight: false,
+        componentDisabled: false
     };
     private selectedDateNormal:string = '';
 
@@ -27,6 +28,16 @@ export class SampleDatePickerNormal implements OnInit {
 
     constructor() {
         let date = new Date();
+    }
+
+    onClearDate() {
+        this.selectedDateNormal = '';
+    }
+
+    onDisableComponent(checked: boolean) {
+        let copy = JSON.parse(JSON.stringify(this.myDatePickerNormalOptions));
+        copy.componentDisabled = checked;
+        this.myDatePickerNormalOptions = copy;
     }
 
     ngOnInit() {
@@ -38,6 +49,8 @@ export class SampleDatePickerNormal implements OnInit {
         if(event.formatted !== '') {
             this.selectedTextNormal = 'Formatted: ' + event.formatted + ' - epoc timestamp: ' + event.epoc;
             this.border = '1px solid #CCC';
+
+            this.selectedDateNormal = event.formatted;
         }
         else {
             this.selectedTextNormal = '';
