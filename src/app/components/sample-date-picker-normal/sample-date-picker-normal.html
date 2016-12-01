@@ -3,7 +3,13 @@
         <li>
             <label>
                 <span>Disable component:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)" [checked]=false>
+                <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)" [checked]="false">
+            </label>
+        </li>
+        <li>
+            <label>
+                <span>Editable date field:</span>
+                <input style="cursor: pointer" type="checkbox" (change)="onEditableDateField($event.currentTarget.checked)" [checked]="true">
             </label>
         </li>
     </ul>
