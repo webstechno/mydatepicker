@@ -7,6 +7,10 @@
                     <option *ngFor="let l of locales">{{l}}</option>
                 </select>
             </span>
+            <span> - </span>
+            <span>
+                <a href="https://github.com/kekeh/mydatepicker#locale-attribute">How</a> to add a new locale.
+            </span>
         </li>
         <li>
             <label>
@@ -34,9 +38,19 @@
         </li>
     </ul>
 
-    <div style="padding:4px;border-radius:4px;margin-bottom:8px;float:right" [ngStyle]="{border: border}">
-        {{selectedTextInline}}
-    </div>
-    <my-date-picker [options]="myDatePickerInlineOptions" (dateChanged)="onDateChanged($event)" (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
-                    [selDate]="selectedDateInline" [locale]="locale"></my-date-picker>
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <my-date-picker [options]="myDatePickerInlineOptions" (dateChanged)="onDateChanged($event)"
+                                (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
+                                [selDate]="selectedDateInline" [locale]="locale"></my-date-picker>
+            </td>
+            <td style="vertical-align: top">
+                <div style="padding:4px;border-radius:4px;float:right" [ngStyle]="{border: border}">
+                    {{selectedTextInline}}
+                </div>
+            </td>
+        </tr>
+    </table>
+
 </div>
