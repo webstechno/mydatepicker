@@ -40,6 +40,6 @@ hr {
 
 @media screen and (max-width: 1200px) {
     .pagecontent {
-        margin: 20px 10px;
+        margin: 20px;
     }
 }
