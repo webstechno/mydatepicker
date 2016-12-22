@@ -19,7 +19,8 @@ export class SampleDatePickerNormal implements OnInit {
         width: '260px',
         selectionTxtFontSize: '18px',
         alignSelectorRight: false,
-        componentDisabled: false
+        componentDisabled: false,
+        showClearDateBtn: true
     };
     private selectedDateNormal:string = '';
 
@@ -43,6 +44,12 @@ export class SampleDatePickerNormal implements OnInit {
     onEditableDateField(checked: boolean) {
         let copy = this.getCopyOfOptions();
         copy.editableDateField = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onShowClearDateButton(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.showClearDateBtn = checked;
         this.myDatePickerNormalOptions = copy;
     }
 
