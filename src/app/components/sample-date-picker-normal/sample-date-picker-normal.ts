@@ -53,6 +53,12 @@ export class SampleDatePickerNormal implements OnInit {
         this.myDatePickerNormalOptions = copy;
     }
 
+    onAlignSelectorRight(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.alignSelectorRight = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
     ngOnInit() {
         console.log('onInit(): SampleDatePickerNormal');
     }
