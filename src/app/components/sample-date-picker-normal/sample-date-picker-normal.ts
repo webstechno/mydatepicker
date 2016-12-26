@@ -16,7 +16,7 @@ export class SampleDatePickerNormal implements OnInit {
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         height: '34px',
-        width: '260px',
+        width: '210px',
         selectionTxtFontSize: '18px',
         alignSelectorRight: false,
         componentDisabled: false,
