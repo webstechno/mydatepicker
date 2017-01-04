@@ -1,6 +1,6 @@
 
 .pagecontent {
-    margin: 20px 300px;
+    margin: 10px 300px;
 }
 
 .maintitle {
@@ -11,16 +11,17 @@
     text-align: center;
 }
 
-.maintitle div {
+.maintitle div:first-child {
     display: inline-block;
     color: #FFF;
     font-size: 46px;
     font-weight: bold;
-    line-height: 180px;
+    margin-top: 48px;
 }
 
-.maintext {
-    margin-bottom: 20px;
+.maintitle div:last-child {
+    color: #FFF;
+    font-size: 18px;
 }
 
 .normalmode {
@@ -29,6 +30,35 @@
 
 .inlinemode {
     margin-bottom: 280px;
+}
+
+.tabcontainer {
+    display: table;
+    width: 100%;
+    border-spacing: 2px;
+}
+
+.tab {
+    display: table-cell;
+    border-radius: 4px;
+    width: 50%;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.activetab {
+    background-color: #2C539E;
+    color: #FFF;
+}
+
+.inactivetab {
+    color: #2C539E;
+}
+
+.inactivetab:hover {
+    background-color: #EEE;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 hr {
@@ -40,6 +70,6 @@ hr {
 
 @media screen and (max-width: 1200px) {
     .pagecontent {
-        margin: 20px;
+        margin: 10px 40px;
     }
 }
