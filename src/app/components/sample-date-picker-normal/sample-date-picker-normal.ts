@@ -53,6 +53,12 @@ export class SampleDatePickerNormal implements OnInit {
         this.myDatePickerNormalOptions = copy;
     }
 
+    onShowInputField(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.showInputField = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
     onAlignSelectorRight(checked: boolean) {
         let copy = this.getCopyOfOptions();
         copy.alignSelectorRight = checked;
