@@ -20,7 +20,8 @@ export class SampleDatePickerNormal implements OnInit {
         selectionTxtFontSize: '18px',
         alignSelectorRight: false,
         componentDisabled: false,
-        showClearDateBtn: true
+        showClearDateBtn: true,
+        openSelectorTopOfInput: false
     };
     private selectedDateNormal:string = '';
 
@@ -62,6 +63,12 @@ export class SampleDatePickerNormal implements OnInit {
     onAlignSelectorRight(checked: boolean) {
         let copy = this.getCopyOfOptions();
         copy.alignSelectorRight = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onOpenSelectorTopOfInput(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.openSelectorTopOfInput = checked;
         this.myDatePickerNormalOptions = copy;
     }
 
