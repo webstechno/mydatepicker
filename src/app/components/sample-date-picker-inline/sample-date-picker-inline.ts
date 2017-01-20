@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged} from 'mydatepicker';
 
 declare var require:any;
 const inlineSampleTpl: string = require('./sample-date-picker-inline.html');
@@ -10,7 +11,7 @@ const inlineSampleTpl: string = require('./sample-date-picker-inline.html');
 
 export class SampleDatePickerInline implements OnInit {
 
-    private myDatePickerInlineOptions = {
+    private myDatePickerInlineOptions: IMyOptions = {
         todayBtnTxt: 'Today',
         dateFormat: 'yyyy-mm-dd',
         firstDayOfWeek: 'mo',
@@ -74,7 +75,7 @@ export class SampleDatePickerInline implements OnInit {
         this.myDatePickerInlineOptions = copy;
     }
 
-    onDateChanged(event:any) {
+    onDateChanged(event: IMyDateModel) {
         console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
         if(event.formatted !== '') {
             this.selectedTextInline = 'Formatted: ' + event.formatted + ' - epoc timestamp: ' + event.epoc;
@@ -86,11 +87,11 @@ export class SampleDatePickerInline implements OnInit {
         }
     }
 
-    onInputFieldChanged(event:any) {
+    onInputFieldChanged(event: IMyInputFieldChanged) {
         console.log('onInputFieldChanged(): Value: ', event.value, ' - dateFormat: ', event.dateFormat, ' - valid: ', event.valid);
     }
 
-    onCalendarViewChanged(event:any) {
+    onCalendarViewChanged(event: IMyCalendarViewChanged) {
         console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
