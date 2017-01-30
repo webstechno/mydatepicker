@@ -31,6 +31,8 @@ export class SampleDatePickerNormal implements OnInit {
     private selectedTextNormal: string = '';
     private border: string = 'none';
 
+    private placeholderTxt:string = 'Select a date';
+
     constructor() {
         let date = new Date();
     }
