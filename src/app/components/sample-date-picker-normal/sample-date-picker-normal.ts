@@ -110,6 +110,10 @@ export class SampleDatePickerNormal implements OnInit {
         console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
+    onCalendarToggle(event: number) {
+        console.log('onCalendarToggle(): Reason: ', event);
+    }
+
     getCopyOfOptions() {
         return JSON.parse(JSON.stringify(this.myDatePickerNormalOptions));
     }

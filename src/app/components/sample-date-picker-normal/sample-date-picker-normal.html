@@ -49,6 +49,7 @@
             <td style="vertical-align: top">
                 <my-date-picker [options]="myDatePickerNormalOptions" (dateChanged)="onDateChanged($event)"
                                 (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
+                                (calendarToggle)="onCalendarToggle($event)"
                                 [selDate]="selectedDateNormal" [placeholder]="placeholderTxt"></my-date-picker>
             </td>
             <td style="vertical-align: top">
