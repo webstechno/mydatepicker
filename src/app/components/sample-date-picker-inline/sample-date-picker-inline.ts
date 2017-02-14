@@ -17,7 +17,8 @@ export class SampleDatePickerInline implements OnInit {
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         inline: true,
-        disableUntil: {year: 0, month: 0, day: 0}
+        disableUntil: {year: 0, month: 0, day: 0},
+        showCalendarIfDisabled: false
     };
     private selectedDateInline: string = '';
 
