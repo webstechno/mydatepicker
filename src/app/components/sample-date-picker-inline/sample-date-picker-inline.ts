@@ -18,7 +18,7 @@ export class SampleDatePickerInline implements OnInit {
         sunHighlight: true,
         inline: true,
         disableUntil: {year: 0, month: 0, day: 0},
-        showCalendarIfDisabled: false
+        disableHeaderButtons: true
     };
     private selectedDateInline: string = '';
 
