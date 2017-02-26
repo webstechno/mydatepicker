@@ -1,65 +1,110 @@
-<div>
-    <ul>
-        <li>
-            <label>
-                <span>Disable component:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)" [checked]="false">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Editable date field:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onEditableDateField($event.currentTarget.checked)" [checked]="true">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Show clear date button:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onShowClearDateButton($event.currentTarget.checked)" [checked]="true">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Show input field:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onShowInputField($event.currentTarget.checked)" [checked]="true">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Align selector right:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onAlignSelectorRight($event.currentTarget.checked)" [checked]="false">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Open selector top of input field:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onOpenSelectorTopOfInput($event.currentTarget.checked)" [checked]="false">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Show selector arrow:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onShowSelectorArrow($event.currentTarget.checked)" [checked]="true">
-            </label>
-        </li>
-        <li>
-            <label>
-                <span>Input auto fill:</span>
-                <input style="cursor: pointer" type="checkbox" (change)="onInputAutoFill($event.currentTarget.checked)" [checked]="true">
-            </label>
-        </li>
-    </ul>
+<style>
+    .settingstable,
+    .pickertable {
+        width: 100%;
+        border: none;
+    }
+    .pickertable {
+        margin-top: 20px;
+    }
+    .settingstable tr td,
+    .pickertable tr td {
+        width: 50%;
+        border: none;
+    }
+    .pickertable tr td {
+        vertical-align: top;
+    }
+    .selectedText {
+        padding: 4px;
+        border-radius: 4px;
+        float:left;
+    }
+</style>
 
-    <table style="width: 100%">
+<div>
+    <table class="settingstable">
         <tr>
-            <td style="vertical-align: top">
+            <td>
+                <label>
+                    <span>Disable component:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)" [checked]="false">
+                </label>
+            </td>
+            <td>
+                <label>
+                    <span>Editable date field:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onEditableDateField($event.currentTarget.checked)" [checked]="true">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <span>Show clear date button:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onShowClearDateButton($event.currentTarget.checked)" [checked]="true">
+                </label>
+            </td>
+            <td>
+                <label>
+                    <span>Show input field:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onShowInputField($event.currentTarget.checked)" [checked]="true">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <span>Align selector right:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onAlignSelectorRight($event.currentTarget.checked)" [checked]="false">
+                </label>
+            </td>
+            <td>
+                <label>
+                    <span>Open selector top of input field:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onOpenSelectorTopOfInput($event.currentTarget.checked)" [checked]="false">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <span>Show selector arrow:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onShowSelectorArrow($event.currentTarget.checked)" [checked]="true">
+                </label>
+            </td>
+            <td>
+                <label>
+                    <span>Input auto fill:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onInputAutoFill($event.currentTarget.checked)" [checked]="true">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="margin-right: 10px">Date format:</span>
+                <span>
+                <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;" (change)="onChangeDateFormat($event.target.value)">
+                    <option *ngFor="let f of dateFormats">{{f}}</option>
+                </select>
+            </span>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+
+    <table class="pickertable">
+        <tr>
+            <td>
                 <my-date-picker [options]="myDatePickerNormalOptions" (dateChanged)="onDateChanged($event)"
                                 (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
                                 (calendarToggle)="onCalendarToggle($event)"
                                 [selDate]="selectedDateNormal" [placeholder]="placeholderTxt"></my-date-picker>
             </td>
-            <td style="vertical-align: top">
-                <div style="padding:4px;border-radius:4px;float:right" [ngStyle]="{border: border}">
+            <td>
+                <div class="selectedText" [ngStyle]="{border: border}">
                     {{selectedTextNormal}}
                 </div>
             </td>

@@ -34,6 +34,8 @@ export class SampleDatePickerNormal implements OnInit {
 
     private placeholderTxt:string = 'Select a date';
 
+    private dateFormats:Array<string> = new Array('dd mmm yyyy', 'yyyy-mm-dd', 'dd.mm.yyyy', 'dd/mm/yyyy', 'mm/dd/yyyy');
+
     constructor() {
         let date = new Date();
     }
@@ -91,6 +93,13 @@ export class SampleDatePickerNormal implements OnInit {
         this.myDatePickerNormalOptions = copy;
     }
 
+    onChangeDateFormat(format: string) {
+        let copy = this.getCopyOfOptions();
+        copy.dateFormat = format;
+        this.myDatePickerNormalOptions = copy;
+        this.selectedDateNormal = '';
+    }
+
     ngOnInit() {
         console.log('onInit(): SampleDatePickerNormal');
     }
@@ -98,7 +107,7 @@ export class SampleDatePickerNormal implements OnInit {
     onDateChanged(event: IMyDateModel) {
         console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
         if(event.formatted !== '') {
-            this.selectedTextNormal = 'Formatted: ' + event.formatted + ' - epoc timestamp: ' + event.epoc;
+            this.selectedTextNormal = 'Formatted: ' + event.formatted + ' - epoc: ' + event.epoc;
             this.border = '1px solid #CCC';
 
             this.selectedDateNormal = event.formatted;
