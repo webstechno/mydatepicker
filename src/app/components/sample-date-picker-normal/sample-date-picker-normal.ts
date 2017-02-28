@@ -25,7 +25,8 @@ export class SampleDatePickerNormal implements OnInit {
         openSelectorTopOfInput: false,
         showSelectorArrow: true,
         openSelectorOnInputClick: false,
-        inputAutoFill: true
+        inputAutoFill: true,
+        showWeekNumbers: false
     };
     private selectedDateNormal:string = '';
 
@@ -98,6 +99,12 @@ export class SampleDatePickerNormal implements OnInit {
         copy.dateFormat = format;
         this.myDatePickerNormalOptions = copy;
         this.selectedDateNormal = '';
+    }
+
+    onShowWeekNumbers(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.showWeekNumbers = checked;
+        this.myDatePickerNormalOptions = copy;
     }
 
     ngOnInit() {

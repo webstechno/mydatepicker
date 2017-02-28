@@ -82,15 +82,18 @@
         </tr>
         <tr>
             <td>
-                <span style="margin-right: 10px">Date format:</span>
-                <span>
-                <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;" (change)="onChangeDateFormat($event.target.value)">
-                    <option *ngFor="let f of dateFormats">{{f}}</option>
-                </select>
-            </span>
+                <label>
+                    <span>Show week numbers:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onShowWeekNumbers($event.currentTarget.checked)" [checked]="false">
+                </label>
             </td>
             <td>
-
+                <span style="margin-right: 10px">Date format:</span>
+                <span>
+                    <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;" (change)="onChangeDateFormat($event.target.value)">
+                        <option *ngFor="let f of dateFormats">{{f}}</option>
+                    </select>
+                </span>
             </td>
         </tr>
     </table>
