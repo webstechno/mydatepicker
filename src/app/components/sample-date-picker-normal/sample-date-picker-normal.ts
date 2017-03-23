@@ -137,6 +137,10 @@ export class SampleDatePickerNormal implements OnInit {
         console.log('onCalendarToggle(): Reason: ', event);
     }
 
+    onFocusBlur(event: number) {
+        console.log('onFocusBlur(): Reason: ', event);
+    }
+
     getCopyOfOptions() {
         return JSON.parse(JSON.stringify(this.myDatePickerNormalOptions));
     }

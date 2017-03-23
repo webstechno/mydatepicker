@@ -104,6 +104,7 @@
                 <my-date-picker [options]="myDatePickerNormalOptions" (dateChanged)="onDateChanged($event)"
                                 (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
                                 (calendarToggle)="onCalendarToggle($event)"
+                                (focusBlur)="onFocusBlur($event)"
                                 [selDate]="selectedDateNormal" [placeholder]="placeholderTxt"></my-date-picker>
             </td>
             <td>
