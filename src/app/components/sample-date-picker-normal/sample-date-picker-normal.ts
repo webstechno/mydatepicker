@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur} from 'mydatepicker';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MyDatePicker, IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur} from 'mydatepicker';
 
 declare var require:any;
 const normalSampleTpl: string = require('./sample-date-picker-normal.html');
@@ -10,6 +10,8 @@ const normalSampleTpl: string = require('./sample-date-picker-normal.html');
 })
 
 export class SampleDatePickerNormal implements OnInit {
+
+    @ViewChild('mydp') mydp: MyDatePicker;
 
     private myDatePickerNormalOptions: IMyOptions = {
         todayBtnTxt: 'Today',
@@ -39,10 +41,6 @@ export class SampleDatePickerNormal implements OnInit {
 
     constructor() {
         let date = new Date();
-    }
-
-    onClearDate() {
-        this.selectedDateNormal = '';
     }
 
     onDisableComponent(checked: boolean) {
@@ -105,6 +103,16 @@ export class SampleDatePickerNormal implements OnInit {
         let copy = this.getCopyOfOptions();
         copy.showWeekNumbers = checked;
         this.myDatePickerNormalOptions = copy;
+    }
+
+    onToggleCalendar(event: any) {
+        event.stopPropagation();
+        this.mydp.openBtnClicked();
+    }
+
+    onClearDate(event: any) {
+        event.stopPropagation();
+        this.mydp.clearDate();
     }
 
     ngOnInit() {

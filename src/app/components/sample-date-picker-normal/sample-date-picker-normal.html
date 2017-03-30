@@ -96,13 +96,25 @@
                 </span>
             </td>
         </tr>
+
+        <tr>
+            <td>
+                <button style="cursor: pointer" type="button" (click)="onToggleCalendar($event)">Toggle</button>
+                <button style="cursor: pointer" type="button" (click)="onClearDate($event)">Clear</button>
+            </td>
+            <td>
+
+            </td>
+        </tr>
     </table>
 
     <table class="pickertable">
         <tr>
             <td>
-                <my-date-picker [options]="myDatePickerNormalOptions" (dateChanged)="onDateChanged($event)"
-                                (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
+                <my-date-picker #mydp="mydatepicker" [options]="myDatePickerNormalOptions"
+                                (dateChanged)="onDateChanged($event)"
+                                (inputFieldChanged)="onInputFieldChanged($event)"
+                                (calendarViewChanged)="onCalendarViewChanged($event)"
                                 (calendarToggle)="onCalendarToggle($event)"
                                 (inputFocusBlur)="onInputFocusBlur($event)"
                                 [selDate]="selectedDateNormal" [placeholder]="placeholderTxt"></my-date-picker>
