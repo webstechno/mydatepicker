@@ -20,7 +20,6 @@ export class SampleDatePickerNormal implements OnInit {
         sunHighlight: true,
         height: '34px',
         width: '210px',
-        selectionTxtFontSize: '18px',
         alignSelectorRight: false,
         componentDisabled: false,
         showClearDateBtn: true,
