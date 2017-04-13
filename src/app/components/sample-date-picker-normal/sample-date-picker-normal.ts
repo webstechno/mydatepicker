@@ -27,7 +27,8 @@ export class SampleDatePickerNormal implements OnInit {
         showSelectorArrow: true,
         openSelectorOnInputClick: false,
         inputAutoFill: true,
-        showWeekNumbers: false
+        showWeekNumbers: false,
+        markDates: []
     };
     private selectedDateNormal:string = '';
 
@@ -101,6 +102,13 @@ export class SampleDatePickerNormal implements OnInit {
     onShowWeekNumbers(checked: boolean) {
         let copy = this.getCopyOfOptions();
         copy.showWeekNumbers = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onMarkToday(checked: boolean): void {
+        let d: Date = new Date();
+        let copy = this.getCopyOfOptions();
+        copy.markDates = checked ? [{dates: [{year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}], color: '#C30000'}] : [];
         this.myDatePickerNormalOptions = copy;
     }
 

@@ -99,15 +99,18 @@
 
         <tr>
             <td>
+                <label>
+                    <span>Mark today:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onMarkToday($event.currentTarget.checked)" [checked]="false">
+                </label>
+            </td>
+            <td>
                 <button style="cursor: pointer" type="button" (click)="onToggleCalendar($event)"
                         [ngStyle]="{'cursor': !myDatePickerNormalOptions.componentDisabled ? 'pointer': 'not-allowed'}"
                         [disabled]="myDatePickerNormalOptions.componentDisabled">Toggle</button>
                 <button style="cursor: pointer" type="button" (click)="onClearDate($event)"
                         [ngStyle]="{'cursor': !myDatePickerNormalOptions.componentDisabled ? 'pointer': 'not-allowed'}"
                         [disabled]="myDatePickerNormalOptions.componentDisabled">Clear</button>
-            </td>
-            <td>
-
             </td>
         </tr>
     </table>
