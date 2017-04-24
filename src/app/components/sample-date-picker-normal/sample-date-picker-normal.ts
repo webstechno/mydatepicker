@@ -26,7 +26,6 @@ export class SampleDatePickerNormal implements OnInit {
         openSelectorTopOfInput: false,
         showSelectorArrow: true,
         openSelectorOnInputClick: false,
-        inputAutoFill: true,
         showWeekNumbers: false,
         markDates: []
     };
@@ -83,12 +82,6 @@ export class SampleDatePickerNormal implements OnInit {
     onShowSelectorArrow(checked: boolean) {
         let copy = this.getCopyOfOptions();
         copy.showSelectorArrow = checked;
-        this.myDatePickerNormalOptions = copy;
-    }
-
-    onInputAutoFill(checked: boolean) {
-        let copy = this.getCopyOfOptions();
-        copy.inputAutoFill = checked;
         this.myDatePickerNormalOptions = copy;
     }
 
