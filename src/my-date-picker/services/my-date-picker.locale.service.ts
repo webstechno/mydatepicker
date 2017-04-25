@@ -249,7 +249,7 @@ export class LocaleService {
             dateFormat: "dd-mm-yyyy",
             todayBtnTxt: "วันนี้",
             firstDayOfWeek: "su",
-            sunHighlight: true   
+            sunHighlight: true
         }
     };
 
