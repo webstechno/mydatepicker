@@ -252,7 +252,7 @@ export class LocaleService {
             sunHighlight: true
         },
         "ko-kr": {
-            dayLabels: {su: "일요일", mo: "월요일", tu: "화요일", we: "수요일", th: "목요일", fr: "금요일", sa: "토요일"},
+            dayLabels: {su: "일", mo: "월", tu: "화", we: "수", th: "목", fr: "금", sa: "토"},
             monthLabels: { 1: "1월", 2: "2월", 3: "3월", 4: "4월", 5: "5월", 6: "6월", 7: "7월", 8: "8월", 9: "9월", 10: "10월", 11: "11월", 12: "12월" },
             dateFormat: "yyyy mm dd",
             todayBtnTxt: "오늘",
