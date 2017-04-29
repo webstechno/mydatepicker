@@ -250,7 +250,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     }
 
     onCloseSelector(event: any): void {
-        if (event.keyCode === KeyCode.esc && !this.opts.inline) {
+        if (event.keyCode === KeyCode.esc && this.showSelector && !this.opts.inline) {
             this.calendarToggle.emit(CalToggle.CloseByEsc);
             this.showSelector = false;
         }
