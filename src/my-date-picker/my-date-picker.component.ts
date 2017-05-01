@@ -17,7 +17,7 @@ export const MYDP_VALUE_ACCESSOR: any = {
 };
 
 enum CalToggle {Open = 1, CloseByDateSel = 2, CloseByCalBtn = 3, CloseByOutClick = 4, CloseByEsc = 5}
-enum Year {min = 1000, max = 9999}
+enum Year {min = 1100, max = 9100}
 enum InputFocusBlur {focus = 1, blur = 2}
 enum KeyCode {enter = 13, esc = 27, space = 32}
 enum MonthId {prev = 1, curr = 2, next = 3}
@@ -75,6 +75,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     nextMonthDisabled: boolean = false;
     prevYearDisabled: boolean = false;
     nextYearDisabled: boolean = false;
+    prevYearsDisabled: boolean = false;
+    nextYearsDisabled: boolean = false;
 
     prevMonthId: number = MonthId.prev;
     currMonthId: number = MonthId.curr;
@@ -255,6 +257,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             }
             this.years.push(row);
         }
+        this.prevYearsDisabled = this.years[0][0].year <= this.opts.minYear || this.utilService.isMonthDisabledByDisableUntil({year: this.years[0][0].year - 1, month: this.visibleMonth.monthNbr, day: this.daysInMonth(this.visibleMonth.monthNbr, this.years[0][0].year - 1)}, this.opts.disableUntil);
+        this.nextYearsDisabled = this.years[4][4].year >= this.opts.maxYear || this.utilService.isMonthDisabledByDisableSince({year: this.years[4][4].year + 1, month: this.visibleMonth.monthNbr, day: 1}, this.opts.disableSince);
     }
 
     onUserDateInput(value: string): void {

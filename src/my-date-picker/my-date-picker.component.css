@@ -183,7 +183,7 @@
 .mydp .btnclearenabled,
 .mydp .headertodaybtnenabled,
 .mydp .headerbtnenabled,
-.mydp .yearchangebtn {
+.mydp .yearchangebtnenabled {
     cursor: pointer;
 }
 
@@ -191,7 +191,8 @@
 .mydp .btnpickerdisabled,
 .mydp .btncleardisabled,
 .mydp .headertodaybtndisabled,
-.mydp .headerbtndisabled {
+.mydp .headerbtndisabled,
+.mydp .yearchangebtndisabled {
     cursor: not-allowed;
     opacity: 0.65;
 }
@@ -519,9 +520,9 @@
 }
 
 .mydp .headerbtnenabled:hover,
+.mydp .yearchangebtnenabled:hover,
 .mydp .monthlabel:hover,
-.mydp .yearlabel:hover,
-.mydp .yearchangebtn:hover {
+.mydp .yearlabel:hover {
     color: #777;
 }
 

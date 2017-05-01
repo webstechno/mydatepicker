@@ -68,7 +68,7 @@
             <tbody>
                 <tr>
                     <td colspan="5" class="yearchangebtncell">
-                        <button type="button" class="yearchangebtn mydpicon icon-mydpup" (click)="onPrevYears($event, years[0][0].year)"></button>
+                        <button type="button" class="yearchangebtn mydpicon icon-mydpup" (click)="onPrevYears($event, years[0][0].year)" [disabled]="prevYearsDisabled" [ngClass]="{'yearchangebtnenabled': !prevYearsDisabled, 'yearchangebtndisabled': prevYearsDisabled}"></button>
                     </td>
                 </tr>
                 <tr *ngFor="let yr of years">
@@ -78,7 +78,7 @@
                 </tr>
                 <tr>
                     <td colspan="5" class="yearchangebtncell">
-                        <button type="button" class="yearchangebtn mydpicon icon-mydpdown" (click)="onNextYears($event, years[0][0].year)"></button>
+                        <button type="button" class="yearchangebtn mydpicon icon-mydpdown" (click)="onNextYears($event, years[0][0].year)" [disabled]="nextYearsDisabled" [ngClass]="{'yearchangebtnenabled': !nextYearsDisabled, 'yearchangebtndisabled': nextYearsDisabled}"></button>
                     </td>
                 </tr>
             </tbody>
