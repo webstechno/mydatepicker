@@ -25,7 +25,8 @@ export class SampleDatePickerNormal implements OnInit {
         alignSelectorRight: false,
         openSelectorTopOfInput: false,
         indicateInvalidDate: true,
-        editableMonthAndYear: true,
+        monthSelector: true,
+        yearSelector: true,
         minYear: 1900,
         maxYear: 2200,
         componentDisabled: false,
@@ -129,6 +130,18 @@ export class SampleDatePickerNormal implements OnInit {
         let d: Date = new Date();
         let copy = this.getCopyOfOptions();
         copy.markDates = checked ? [{dates: [{year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}], color: '#C30000'}] : [];
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onMonthSelector(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.monthSelector = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onYearSelector(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.yearSelector = checked;
         this.myDatePickerNormalOptions = copy;
     }
 

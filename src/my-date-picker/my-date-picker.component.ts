@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation, ChangeDetectorRef, Renderer, forwardRef } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation, ChangeDetectorRef, Renderer, ViewChild, forwardRef } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { IMyDate, IMyDateRange, IMyMonth, IMyCalendarDay, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur, IMyMarkedDates, IMyMarkedDate } from "./interfaces/index";
+import { IMyDate, IMyDateRange, IMyMonth, IMyCalendarDay, IMyCalendarMonth, IMyCalendarYear, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur, IMyMarkedDates, IMyMarkedDate } from "./interfaces/index";
 import { LocaleService } from "./services/my-date-picker.locale.service";
 import { UtilService } from "./services/my-date-picker.util.service";
 
@@ -49,6 +49,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     @Output() calendarViewChanged: EventEmitter<IMyCalendarViewChanged> = new EventEmitter<IMyCalendarViewChanged>();
     @Output() calendarToggle: EventEmitter<number> = new EventEmitter<number>();
     @Output() inputFocusBlur: EventEmitter<IMyInputFocusBlur> = new EventEmitter<IMyInputFocusBlur>();
+    @ViewChild("selectorEl") selectorEl: any;
 
     onChangeCb: (_: any) => void = () => { };
     onTouchedCb: () => void = () => { };
@@ -59,16 +60,16 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     selectedDate: IMyDate = {year: 0, month: 0, day: 0};
     weekDays: Array<string> = [];
     dates: Array<IMyWeek> = [];
+    months: Array<Array<IMyCalendarMonth>> = [];
+    years: Array<Array<IMyCalendarYear>> = [];
     selectionDayTxt: string = "";
     invalidDate: boolean = false;
     disableTodayBtn: boolean = false;
     dayIdx: number = 0;
     weekDayOpts: Array<string> = ["su", "mo", "tu", "we", "th", "fr", "sa"];
 
-    editMonth: boolean = false;
-    invalidMonth: boolean = false;
-    editYear: boolean = false;
-    invalidYear: boolean = false;
+    selectMonth: boolean = false;
+    selectYear: boolean = false;
 
     prevMonthDisabled: boolean = false;
     nextMonthDisabled: boolean = false;
@@ -107,7 +108,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         openSelectorTopOfInput: <boolean> false,
         indicateInvalidDate: <boolean> true,
         editableDateField: <boolean> true,
-        editableMonthAndYear: <boolean> true,
+        monthSelector: <boolean> true,
+        yearSelector: <boolean> true,
         disableHeaderButtons: <boolean> true,
         minYear: <number> Year.min,
         maxYear: <number> Year.max,
@@ -131,8 +133,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                 this.showSelector = false;
                 this.calendarToggle.emit(CalToggle.CloseByOutClick);
             }
-            if (this.opts.editableMonthAndYear) {
-                this.resetMonthYearEdit();
+            if (this.opts.monthSelector || this.opts.yearSelector) {
+                this.resetMonthYearSelect();
             }
         });
     }
@@ -167,24 +169,91 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
     }
 
-    resetMonthYearEdit(): void {
-        this.editMonth = false;
-        this.editYear = false;
-        this.invalidMonth = false;
-        this.invalidYear = false;
+    resetMonthYearSelect(): void {
+        this.selectMonth = false;
+        this.selectYear = false;
     }
 
-    onEditMonthClicked(event: any): void {
+    onSelectMonthClicked(event: any): void {
         event.stopPropagation();
-        if (this.opts.editableMonthAndYear) {
-            this.editMonth = true;
+        this.selectMonth = !this.selectMonth;
+        this.selectYear = false;
+        this.cdr.detectChanges();
+        if (this.selectMonth) {
+            this.months.length = 0;
+            for (let i = 1; i <= 12; i += 3) {
+                let row: Array<IMyCalendarMonth> = [];
+                for (let j = i; j < i + 3; j++) {
+                    let disabled: boolean = this.utilService.isMonthDisabledByDisableUntil({year: this.visibleMonth.year, month: j, day: this.daysInMonth(j, this.visibleMonth.year)}, this.opts.disableUntil)
+                        || this.utilService.isMonthDisabledByDisableSince({year: this.visibleMonth.year, month: j, day: 1}, this.opts.disableSince);
+                    row.push({nbr: j, name: this.opts.monthLabels[j], selected: j === this.visibleMonth.monthNbr, disabled: disabled});
+                }
+                this.months.push(row);
+            }
         }
     }
 
-    onEditYearClicked(event: any): void {
+    onMonthCellClicked(cell: IMyCalendarMonth): void {
+        let mc: boolean = cell.nbr !== this.visibleMonth.monthNbr;
+        this.visibleMonth = {monthTxt: this.monthText(cell.nbr), monthNbr: cell.nbr, year: this.visibleMonth.year};
+        this.generateCalendar(cell.nbr, this.visibleMonth.year, mc);
+        this.selectMonth = false;
+        this.selectorEl.nativeElement.focus();
+    }
+
+    onMonthCellKeyDown(event: any, cell: IMyCalendarMonth) {
+        if ((event.keyCode === KeyCode.enter || event.keyCode === KeyCode.space) && !cell.disabled) {
+            event.preventDefault();
+            this.onMonthCellClicked(cell);
+        }
+    }
+
+    onSelectYearClicked(event: any): void {
         event.stopPropagation();
-        if (this.opts.editableMonthAndYear) {
-            this.editYear = true;
+        this.selectYear = !this.selectYear;
+        this.selectMonth = false;
+        this.cdr.detectChanges();
+        if (this.selectYear) {
+            this.generateYears(this.visibleMonth.year);
+        }
+    }
+
+    onYearCellClicked(cell: IMyCalendarYear): void {
+        let yc: boolean = cell.year !== this.visibleMonth.year;
+        this.visibleMonth = {monthTxt: this.visibleMonth.monthTxt, monthNbr: this.visibleMonth.monthNbr, year: cell.year};
+        this.generateCalendar(this.visibleMonth.monthNbr, cell.year, yc);
+        this.selectYear = false;
+        this.selectorEl.nativeElement.focus();
+    }
+
+    onYearCellKeyDown(event: any, cell: IMyCalendarYear) {
+        if ((event.keyCode === KeyCode.enter || event.keyCode === KeyCode.space) && !cell.disabled) {
+            event.preventDefault();
+            this.onYearCellClicked(cell);
+        }
+    }
+
+    onPrevYears(event: any, year: number): void {
+        event.stopPropagation();
+        this.generateYears(year - 25);
+    }
+
+    onNextYears(event: any, year: number): void {
+        event.stopPropagation();
+        this.generateYears(year + 25);
+    }
+
+    generateYears(year: number): void {
+        this.years.length = 0;
+        for (let i = year; i <= 20 + year; i += 5) {
+            let row: Array<IMyCalendarYear> = [];
+            for (let j = i; j < i + 5; j++) {
+                let disabled: boolean = this.utilService.isMonthDisabledByDisableUntil({year: j, month: this.visibleMonth.monthNbr, day: this.daysInMonth(this.visibleMonth.monthNbr, j)}, this.opts.disableUntil)
+                 || this.utilService.isMonthDisabledByDisableSince({year: j, month: this.visibleMonth.monthNbr, day: 1}, this.opts.disableSince);
+                let minMax: boolean = j < this.opts.minYear || j > this.opts.maxYear;
+                row.push({year: j, selected: j === this.visibleMonth.year, disabled: disabled || minMax});
+            }
+            this.years.push(row);
         }
     }
 
@@ -219,54 +288,10 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.inputFocusBlur.emit({reason: InputFocusBlur.blur, value: event.target.value});
     }
 
-    onUserMonthInput(value: string): void {
-        this.invalidMonth = false;
-        let m: number = this.utilService.isMonthLabelValid(value, this.opts.monthLabels);
-        if (m !== -1) {
-            this.editMonth = false;
-            if (m !== this.visibleMonth.monthNbr) {
-                this.visibleMonth = {monthTxt: this.monthText(m), monthNbr: m, year: this.visibleMonth.year};
-                this.generateCalendar(m, this.visibleMonth.year, true);
-            }
-        }
-        else {
-            this.invalidMonth = true;
-        }
-    }
-
-    onUserYearInput(value: string): void {
-        this.invalidYear = false;
-        let y: number = this.utilService.isYearLabelValid(Number(value), this.opts.minYear, this.opts.maxYear);
-        if (y !== -1) {
-            this.editYear = false;
-            if (y !== this.visibleMonth.year) {
-                this.visibleMonth = {monthTxt: this.visibleMonth.monthTxt, monthNbr: this.visibleMonth.monthNbr, year: y};
-                this.generateCalendar(this.visibleMonth.monthNbr, y, true);
-            }
-        }
-        else {
-            this.invalidYear = true;
-        }
-    }
-
     onCloseSelector(event: any): void {
         if (event.keyCode === KeyCode.esc && this.showSelector && !this.opts.inline) {
             this.calendarToggle.emit(CalToggle.CloseByEsc);
             this.showSelector = false;
-        }
-    }
-
-    onCloseEditMonth(event: any): void {
-        if (event.keyCode === KeyCode.esc) {
-            event.stopPropagation();
-            this.editMonth = false;
-        }
-    }
-
-    onCloseEditYear(event: any): void {
-        if (event.keyCode === KeyCode.esc) {
-            event.stopPropagation();
-            this.editYear = false;
         }
     }
 
@@ -474,7 +499,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             // Next month day
             this.onNextMonth();
         }
-        this.resetMonthYearEdit();
+        this.resetMonthYearSelect();
     }
 
     onCellKeyDown(event: any, cell: any) {

@@ -203,7 +203,8 @@ Value of the __options__ attribute is a type of [IMyOptions](https://github.com/
 | __firstDayOfWeek__   | mo | string | First day of week on calendar. One of the following: mo, tu, we, th, fr, sa, su |
 | __sunHighlight__   | true | boolean | Sunday red colored on calendar. |
 | __markCurrentDay__   | true | boolean | Is current day (today) marked on calendar. |
-| __editableMonthAndYear__  | true | boolean | Is month and year labels editable or not. |
+| __monthSelector__  | true | boolean | If month label is selected opens a selector of months. |
+| __yearSelector__  | true | boolean | If year label is selected opens a selector of years. |
 | __minYear__   | 1000 | number | Minimum allowed year in calendar. Cannot be less than 1000. |
 | __maxYear__   | 9999 | number | Maximum allowed year in calendar. Cannot be more than 9999. |
 | __disableUntil__   | no default value | [IMyDate](https://github.com/kekeh/mydatepicker/blob/master/src/my-date-picker/interfaces/my-date.interface.ts) | Disable dates backward starting from the given date. For example: {year: 2016, month: 6, day: 26} |
@@ -244,11 +245,8 @@ Value of the __options__ attribute is a type of [IMyOptions](https://github.com/
       dateFormat: 'yyyy-mm-dd',
       firstDayOfWeek: 'mo',
       sunHighlight: true,
-      height: '34px',
-      width: '260px',
       inline: false,
-      disableUntil: {year: 2016, month: 8, day: 10},
-      selectionTxtFontSize: '16px'
+      disableUntil: {year: 2016, month: 8, day: 10}
   };
 ```
 
@@ -256,7 +254,8 @@ Value of the __options__ attribute is a type of [IMyOptions](https://github.com/
 
 An ISO 639-1 language code can be provided as shorthand for the following options (dayLabels, monthLabels, dateFormat, todayBtnTxt, firstDayOfWeek and sunHighlight).
 Currently supported languages: __en__, __fr__, __ja__, __fi__, __es__, __hu__, __sv__, __nl__, __ru__, __uk__, __no__, __tr__,
-__pt-br__, __de__, __it__, __it-ch__, __pl__, __my__, __sk__, __sl__, __zh-cn__, __he__, __ro__, __ca__, __id__, __en-au__, __am-et__, __cs__, __el__, __kk__, __th__ and __ko-kr__.
+__pt-br__, __de__, __it__, __it-ch__, __pl__, __my__, __sk__, __sl__, __zh-cn__, __he__, __ro__, __ca__, __id__, __en-au__, __am-et__, __cs__, __el__, __kk__,
+__th__, __ko-kr__ and __da__.
 
 The __locale__ options can be override by __options__ attribute.
 

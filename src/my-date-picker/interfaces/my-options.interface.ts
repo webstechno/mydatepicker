@@ -32,7 +32,8 @@ export interface IMyOptions {
     openSelectorTopOfInput?: boolean;
     indicateInvalidDate?: boolean;
     editableDateField?: boolean;
-    editableMonthAndYear?: boolean;
+    monthSelector?: boolean;
+    yearSelector?: boolean;
     disableHeaderButtons?: boolean;
     minYear?: number;
     maxYear?: number;
