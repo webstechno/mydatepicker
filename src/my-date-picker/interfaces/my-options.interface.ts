@@ -45,6 +45,8 @@ export interface IMyOptions {
     openSelectorOnInputClick?: boolean;
     ariaLabelInputField?: string;
     ariaLabelClearDate?: string;
+    ariaLabelDecreaseDate?: string;
+    ariaLabelIncreaseDate?: string;
     ariaLabelOpenCalendar?: string;
     ariaLabelPrevMonth?: string;
     ariaLabelNextMonth?: string;
