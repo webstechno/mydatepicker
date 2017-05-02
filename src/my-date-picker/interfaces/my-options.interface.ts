@@ -28,6 +28,8 @@ export interface IMyOptions {
     selectionTxtFontSize?: string;
     inline?: boolean;
     showClearDateBtn?: boolean;
+    showDecreaseDateBtn?: boolean;
+    showIncreaseDateBtn?: boolean;
     alignSelectorRight?: boolean;
     openSelectorTopOfInput?: boolean;
     indicateInvalidDate?: boolean;

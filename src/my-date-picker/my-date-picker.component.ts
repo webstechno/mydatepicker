@@ -106,6 +106,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         selectionTxtFontSize: <string> "14px",
         inline: <boolean> false,
         showClearDateBtn: <boolean> true,
+        showDecreaseDateBtn: <boolean> false,
+        showIncreaseDateBtn: <boolean> false,
         alignSelectorRight: <boolean> false,
         openSelectorTopOfInput: <boolean> false,
         indicateInvalidDate: <boolean> true,
