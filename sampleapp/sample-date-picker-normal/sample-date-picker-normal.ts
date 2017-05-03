@@ -31,6 +31,8 @@ export class SampleDatePickerNormal implements OnInit {
         maxYear: 2200,
         componentDisabled: false,
         showClearDateBtn: true,
+        showDecreaseDateBtn: false,
+        showIncreaseDateBtn: false,
         showSelectorArrow: true,
         showInputField: true,
         openSelectorOnInputClick: false,
@@ -67,6 +69,14 @@ export class SampleDatePickerNormal implements OnInit {
         this.selectedDateNormal = '';
     }
 
+    decreaseDate() {
+        this.selectedDateNormal = '';
+    }
+
+    increaseDate() {
+        this.selectedDateNormal = '';
+    }
+
     onDisableComponent(checked: boolean) {
         this.disabled = checked;
     }
@@ -87,6 +97,18 @@ export class SampleDatePickerNormal implements OnInit {
     onShowClearDateButton(checked: boolean) {
         let copy = this.getCopyOfOptions();
         copy.showClearDateBtn = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onShowDecreaseDateButton(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.showDecreaseDateBtn = checked;
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onShowIncreaseDateButton(checked: boolean) {
+        let copy = this.getCopyOfOptions();
+        copy.showIncreaseDateBtn = checked;
         this.myDatePickerNormalOptions = copy;
     }
 
