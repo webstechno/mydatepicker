@@ -331,11 +331,11 @@
     background: #FBEFEF !important;
 }
 
-.mydp .sunday {
+.mydp .highlight {
     color: #C30000;
 }
 
-.mydp .sundayDim {
+.mydp .dimday {
     opacity: 0.5;
 }
 

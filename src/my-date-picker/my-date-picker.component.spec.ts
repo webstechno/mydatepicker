@@ -573,8 +573,9 @@ describe('MyDatePicker', () => {
         btnpicker.nativeElement.click();
 
         fixture.detectChanges();
-        let sunday = getElement('.sunday');
-        expect(sunday).not.toBe(null);
+        let highlight = getElements('.highlight');
+        expect(highlight).not.toBe(null);
+        expect(highlight.length).toBe(6);
 
         btnpicker.nativeElement.click();
 
@@ -588,8 +589,77 @@ describe('MyDatePicker', () => {
         comp.parseOptions();
 
         fixture.detectChanges();
-        sunday = getElement('.sunday');
-        expect(sunday).toBe(null);
+        highlight = getElements('.highlight');
+        expect(highlight.length).toBe(0);
+    });
+
+    it('options - saturday highlight', () => {
+        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.options = {satHighlight: true, sunHighlight: false};
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        let btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        let highlight = getElements('.highlight');
+        expect(highlight).not.toBe(null);
+        expect(highlight.length).toBe(6);
+
+        btnpicker.nativeElement.click();
+
+        comp.options = {satHighlight: false, sunHighlight: false};
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        btnpicker.nativeElement.click();
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        highlight = getElements('.highlight');
+        expect(highlight.length).toBe(0);
+    });
+
+    it('options - highlight dates', () => {
+        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
+
+        comp.options = {
+            sunHighlight: false,
+            satHighlight: false,
+            highlightDates: [{year: 2016, month: 1, day: 10}, {year: 2016, month: 1, day: 12}, {year: 2016, month: 1, day: 13}]
+        };
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        let btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        let highlight = getElements('.highlight');
+        expect(highlight).not.toBe(null);
+        expect(highlight.length).toBe(3);
+
+        fixture.detectChanges();
+        btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+
+        comp.options.highlightDates = [];
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        highlight = getElements('.highlight');
+        expect(highlight.length).toBe(0);
     });
 
     it('options - current day marked', () => {
@@ -2213,8 +2283,9 @@ describe('MyDatePicker', () => {
         expect(firstDayOfWeek.nativeElement.textContent).toBe('Lun');
 
         fixture.detectChanges();
-        let sunday = getElement('.sunday');
-        expect(sunday).not.toBe(null);
+        let highlight = getElements('.highlight');
+        expect(highlight).not.toBe(null);
+        expect(highlight.length).toBe(6);
 
         comp.onUserDateInput('10/10/2016');
         expect(comp.invalidDate).toBe(false);
@@ -2463,8 +2534,9 @@ describe('MyDatePicker', () => {
         expect(firstDayOfWeek.nativeElement.textContent).toBe('Min');
 
         fixture.detectChanges();
-        let sunday = getElement('.sunday');
-        expect(sunday).not.toBe(null);
+        let highlight = getElements('.highlight');
+        expect(highlight).not.toBe(null);
+        expect(highlight.length).toBe(6);
 
         comp.onUserDateInput('10-10-2016');
         expect(comp.invalidDate).toBe(false);
