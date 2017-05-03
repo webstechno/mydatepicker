@@ -83,10 +83,18 @@
         <tr>
             <td>
                 <label>
+                    <span>Highligh today:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onHighlightToday($event.currentTarget.checked)" [checked]="false">
+                </label>
+            </td>
+            <td>
+                <label>
                     <span>Show week numbers:</span>
                     <input style="cursor: pointer" type="checkbox" (change)="onShowWeekNumbers($event.currentTarget.checked)" [checked]="false">
                 </label>
             </td>
+        </tr>
+        <tr>
             <td>
                 <span style="margin-right: 10px">Date format:</span>
                 <span>
@@ -94,6 +102,9 @@
                         <option *ngFor="let f of dateFormats">{{f}}</option>
                     </select>
                 </span>
+            </td>
+            <td>
+
             </td>
         </tr>
         <tr>

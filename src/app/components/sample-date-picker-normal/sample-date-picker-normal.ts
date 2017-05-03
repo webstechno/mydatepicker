@@ -27,6 +27,7 @@ export class SampleDatePickerNormal implements OnInit {
         showSelectorArrow: true,
         openSelectorOnInputClick: false,
         showWeekNumbers: false,
+        highlightDates: [],
         markDates: []
     };
     private selectedDateNormal:string = '';
@@ -102,6 +103,13 @@ export class SampleDatePickerNormal implements OnInit {
         let d: Date = new Date();
         let copy = this.getCopyOfOptions();
         copy.markDates = checked ? [{dates: [{year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}], color: '#C30000'}] : [];
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onHighlightToday(checked: boolean): void {
+        let d: Date = new Date();
+        let copy = this.getCopyOfOptions();
+        copy.highlightDates = checked ? [{year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}] : [];
         this.myDatePickerNormalOptions = copy;
     }
 
