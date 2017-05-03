@@ -26,6 +26,18 @@
         </li>
         <li>
             <label>
+                <span>Show decrease date button:</span>
+                <input style="cursor: pointer" type="checkbox" (change)="onShowDecreaseDateButton($event.currentTarget.checked)" [checked]="false">
+            </label>
+        </li>
+        <li>
+            <label>
+                <span>Show increase date button:</span>
+                <input style="cursor: pointer" type="checkbox" (change)="onShowIncreaseDateButton($event.currentTarget.checked)" [checked]="false">
+            </label>
+        </li>
+        <li>
+            <label>
                 <span>Show input field:</span>
                 <input style="cursor: pointer" type="checkbox" (change)="onShowInputField($event.currentTarget.checked)" [checked]="true">
             </label>
