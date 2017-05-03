@@ -273,7 +273,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         else {
             let date: IMyDate = this.utilService.isDateValid(value, this.opts.dateFormat, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableDays, this.opts.disableDateRanges, this.opts.monthLabels, this.opts.enableDays);
             if (date.day !== 0 && date.month !== 0 && date.year !== 0) {
-                this.selectDate(date);
+                this.selectDate(date, CalToggle.CloseByDateSel);
             }
             else {
                 this.invalidDate = true;
@@ -406,22 +406,14 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.showSelector = false;
     }
 
-    decreaseBtnClicked(): void {
+    onDecreaseBtnClicked(): void {
         // Decrease date button clicked
-        this.decreaseDate();
-        if (this.showSelector) {
-            this.calendarToggle.emit(CalToggle.CloseByCalBtn);
-        }
-        this.showSelector = false;
+        this.decreaseIncreaseDate(true);
     }
 
-    increaseBtnClicked(): void {
+    onIncreaseBtnClicked(): void {
         // Increase date button clicked
-        this.increaseDate();
-        if (this.showSelector) {
-            this.calendarToggle.emit(CalToggle.CloseByCalBtn);
-        }
-        this.showSelector = false;
+        this.decreaseIncreaseDate(false);
     }
 
     openBtnClicked(): void {
@@ -499,7 +491,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     onTodayClicked(): void {
         // Today button clicked
         let today: IMyDate = this.getToday();
-        this.selectDate(today);
+        this.selectDate(today, CalToggle.CloseByDateSel);
         if (this.opts.inline && today.year !== this.visibleMonth.year || today.month !== this.visibleMonth.monthNbr) {
             this.visibleMonth = {monthTxt: this.opts.monthLabels[today.month], monthNbr: today.month, year: today.year};
             this.generateCalendar(today.month, today.year, true);
@@ -518,7 +510,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                 this.clearDate();
             }
             else {
-                this.selectDate(cell.dateObj);
+                this.selectDate(cell.dateObj, CalToggle.CloseByDateSel);
             }
         }
         else if (cell.cmo === this.nextMonthId) {
@@ -545,51 +537,21 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.updateDateValue(date, true);
     }
 
-    decreaseDate(): void {
-      // Decreases the date and notifies parent using callbacks and value accessor
-      let date = this.selectedDate;
-      if (date.day !== 0 && date.month !== 0 && date.year !== 0) {
-        let advancedDate = this.getDate(this.selectedDate.year, this.selectedDate.month, this.selectedDate.day);
-        advancedDate.setDate(advancedDate.getDate() - 1);
-        date = {year: advancedDate.getFullYear(), month: advancedDate.getMonth() + 1, day: advancedDate.getDate()};;
-      } else {
-        date = this.getToday();
-      }
-
-      let dateModel: IMyDateModel = this.getDateModel(date);
-      this.dateChanged.emit(dateModel);
-      this.onChangeCb(dateModel);
-      this.onTouchedCb();
-      this.updateDateValue(date, false);
-      if (this.showSelector) {
-          this.calendarToggle.emit(CalToggle.CloseByDateSel);
-      }
-      this.showSelector = false;
+    decreaseIncreaseDate(decrease: boolean): void {
+        // Decreases or increases the date depending on the parameter
+        let date: IMyDate = this.selectedDate;
+        if (this.utilService.isInitializedDate(date)) {
+            let d: Date = this.getDate(date.year, date.month, date.day);
+            d.setDate(decrease ? d.getDate() - 1 : d.getDate() + 1);
+            date = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+        }
+        else {
+            date = this.getToday();
+        }
+        this.selectDate(date, CalToggle.CloseByCalBtn);
     }
 
-    increaseDate(): void {
-        // Increases the date and notifies parent using callbacks and value accessor
-        let date = this.selectedDate;
-        if (date.day !== 0 && date.month !== 0 && date.year !== 0) {
-          let advancedDate = this.getDate(this.selectedDate.year, this.selectedDate.month, this.selectedDate.day);
-          advancedDate.setDate(advancedDate.getDate() + 1);
-          date = {year: advancedDate.getFullYear(), month: advancedDate.getMonth() + 1, day: advancedDate.getDate()};;
-        } else {
-          date = this.getToday();
-        }
-
-        let dateModel: IMyDateModel = this.getDateModel(date);
-        this.dateChanged.emit(dateModel);
-        this.onChangeCb(dateModel);
-        this.onTouchedCb();
-        this.updateDateValue(date, false);
-        if (this.showSelector) {
-            this.calendarToggle.emit(CalToggle.CloseByDateSel);
-        }
-        this.showSelector = false;
-    }
-
-    selectDate(date: IMyDate): void {
+    selectDate(date: IMyDate, closeReason: number): void {
         // Date selected, notifies parent using callbacks and value accessor
         let dateModel: IMyDateModel = this.getDateModel(date);
         this.dateChanged.emit(dateModel);
@@ -597,7 +559,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.onTouchedCb();
         this.updateDateValue(date, false);
         if (this.showSelector) {
-            this.calendarToggle.emit(CalToggle.CloseByDateSel);
+            this.calendarToggle.emit(closeReason);
         }
         this.showSelector = false;
     }
