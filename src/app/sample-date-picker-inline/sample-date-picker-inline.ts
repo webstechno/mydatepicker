@@ -1,28 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged} from 'mydatepicker';
 
-declare var require:any;
-const inlineSampleTpl: string = require('./sample-date-picker-inline.html');
-
 @Component({
     selector: 'sample-date-picker-inline',
-    template: inlineSampleTpl
+    templateUrl: 'sample-date-picker-inline.html',
+    moduleId: module.id,
 })
 
 export class SampleDatePickerInline implements OnInit {
 
-    private myDatePickerInlineOptions: IMyOptions = {
+    myDatePickerInlineOptions: IMyOptions = {
         inline: true,
         disableUntil: {year: 0, month: 0, day: 0},
         disableHeaderButtons: true
     };
-    private selectedDateInline: string = '';
+    selectedDateInline: string = '';
 
-    private selectedTextInline: string = '';
-    private border: string = 'none';
-    private locale:string = 'en';
+    selectedTextInline: string = '';
+    border: string = 'none';
+    locale:string = 'en';
 
-    private locales:Array<string> = new Array('en', 'fr', 'ja', 'fi', 'es', 'hu', 'sv', 'nl', 'ru', 'uk', 'no', 'tr', 'pt-br', 'de', 'it', 'it-ch', 'pl', 'my', 'sk', 'sl', 'zh-cn', 'he', 'ro', 'ca', 'id', 'en-au', 'am-et', 'cs', 'el', 'kk', 'th', 'ko-kr', 'da');
+    locales:Array<string> = new Array('en', 'fr', 'ja', 'fi', 'es', 'hu', 'sv', 'nl', 'ru', 'uk', 'no', 'tr', 'pt-br', 'de', 'it', 'it-ch', 'pl', 'my', 'sk', 'sl', 'zh-cn', 'he', 'ro', 'ca', 'id', 'en-au', 'am-et', 'cs', 'el', 'kk', 'th', 'ko-kr', 'da');
 
     constructor() {}
 

@@ -1,19 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MyDatePicker, IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur} from 'mydatepicker';
 
-declare var require:any;
-const normalSampleTpl: string = require('./sample-date-picker-normal.html');
-
 @Component({
     selector: 'sample-date-picker-normal',
-    template: normalSampleTpl
+    templateUrl: 'sample-date-picker-normal.html',
+    moduleId: module.id,
 })
 
 export class SampleDatePickerNormal implements OnInit {
 
     @ViewChild('mydp') mydp: MyDatePicker;
 
-    private myDatePickerNormalOptions: IMyOptions = {
+    myDatePickerNormalOptions: IMyOptions = {
         todayBtnTxt: 'Today',
         dateFormat: 'dd mmm yyyy',
         firstDayOfWeek: 'mo',
@@ -30,14 +28,14 @@ export class SampleDatePickerNormal implements OnInit {
         highlightDates: [],
         markDates: []
     };
-    private selectedDateNormal:string = '';
+    selectedDateNormal:string = '';
 
-    private selectedTextNormal: string = '';
-    private border: string = 'none';
+    selectedTextNormal: string = '';
+    border: string = 'none';
 
-    private placeholderTxt:string = 'Select a date';
+    placeholderTxt:string = 'Select a date';
 
-    private dateFormats:Array<string> = new Array('dd mmm yyyy', 'yyyy-mm-dd', 'dd.mm.yyyy', 'dd/mm/yyyy', 'mm/dd/yyyy');
+    dateFormats:Array<string> = new Array('dd mmm yyyy', 'yyyy-mm-dd', 'dd.mm.yyyy', 'dd/mm/yyyy', 'mm/dd/yyyy');
 
     constructor() {
         let date = new Date();
