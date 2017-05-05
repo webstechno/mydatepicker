@@ -283,7 +283,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
         if (this.invalidDate) {
             this.inputFieldChanged.emit({value: value, dateFormat: this.opts.dateFormat, valid: !(value.length === 0 || this.invalidDate)});
-            this.onChangeCb("");
+            this.onChangeCb(null);
             this.onTouchedCb();
         }
     }
@@ -336,14 +336,18 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             if (!this.opts.inline) {
                 this.updateDateValue(this.selectedDate, false);
             }
+            this.onChangeCb(this.getDateModel(this.selectedDate));
+            this.onTouchedCb();
         }
-        else if (value === "") {
+        else if (value === null || value === "") {
             if (!this.opts.inline) {
                 this.updateDateValue({year: 0, month: 0, day: 0}, true);
             }
             else {
                 this.selectedDate = {year: 0, month: 0, day: 0};
             }
+            this.onChangeCb(null);
+            this.onTouchedCb();
         }
     }
 
@@ -547,7 +551,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         // Clears the date and notifies parent using callbacks and value accessor
         let date: IMyDate = {year: 0, month: 0, day: 0};
         this.dateChanged.emit({date: date, jsdate: null, formatted: "", epoc: 0});
-        this.onChangeCb("");
+        this.onChangeCb(null);
         this.onTouchedCb();
         this.updateDateValue(date, true);
     }
