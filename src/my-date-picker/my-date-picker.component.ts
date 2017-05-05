@@ -327,10 +327,23 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
 
     writeValue(value: Object): void {
         if (value && value["date"]) {
-            this.updateDateValue(this.parseSelectedDate(value["date"]), false);
+            this.selectedDate = this.parseSelectedDate(value["date"]);
+            let cvc: boolean = this.visibleMonth.year !== this.selectedDate.year || this.visibleMonth.monthNbr !== this.selectedDate.month;
+            if (cvc) {
+                this.visibleMonth = {monthTxt: this.opts.monthLabels[this.selectedDate.month], monthNbr: this.selectedDate.month, year: this.selectedDate.year};
+                this.generateCalendar(this.selectedDate.month, this.selectedDate.year, cvc);
+            }
+            if (!this.opts.inline) {
+                this.updateDateValue(this.selectedDate, false);
+            }
         }
         else if (value === "") {
-            this.updateDateValue({year: 0, month: 0, day: 0}, true);
+            if (!this.opts.inline) {
+                this.updateDateValue({year: 0, month: 0, day: 0}, true);
+            }
+            else {
+                this.selectedDate = {year: 0, month: 0, day: 0};
+            }
         }
     }
 
@@ -508,7 +521,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
         else if (cell.cmo === this.currMonthId) {
             // Current month day - if date is already selected clear it
-            if (cell.dateObj.year === this.selectedDate.year && cell.dateObj.month === this.selectedDate.month && cell.dateObj.day === this.selectedDate.day) {
+            if (this.utilService.isSameDate(cell.dateObj, this.selectedDate)) {
                 this.clearDate();
             }
             else {
