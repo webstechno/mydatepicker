@@ -336,8 +336,6 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             if (!this.opts.inline) {
                 this.updateDateValue(this.selectedDate, false);
             }
-            this.onChangeCb(this.getDateModel(this.selectedDate));
-            this.onTouchedCb();
         }
         else if (value === null || value === "") {
             if (!this.opts.inline) {
@@ -346,9 +344,11 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             else {
                 this.selectedDate = {year: 0, month: 0, day: 0};
             }
-            this.onChangeCb(null);
-            this.onTouchedCb();
         }
+    }
+
+    setDisabledState(disabled: boolean): void {
+        this.opts.componentDisabled = disabled;
     }
 
     registerOnChange(fn: any): void {
