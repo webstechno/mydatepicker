@@ -325,9 +325,9 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
     }
 
-    writeValue(value: Object): void {
-        if (value && value["date"]) {
-            this.selectedDate = this.parseSelectedDate(value["date"]);
+    writeValue(value: any): void {
+        if (value && (value["date"] || value["jsdate"])) {
+            this.selectedDate = value["date"] ? this.parseSelectedDate(value["date"]) : this.parseSelectedDate(this.jsDateToMyDate(value["jsdate"]));
             let cvc: boolean = this.visibleMonth.year !== this.selectedDate.year || this.visibleMonth.monthNbr !== this.selectedDate.month;
             if (cvc) {
                 this.visibleMonth = {monthTxt: this.opts.monthLabels[this.selectedDate.month], monthNbr: this.selectedDate.month, year: this.selectedDate.year};
@@ -749,6 +749,10 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
         this.selectionDayTxt = this.formatDate(date);
         return date;
+    }
+
+    jsDateToMyDate(date: Date): IMyDate {
+        return {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
     }
 
     parseSelectedMonth(ms: string): IMyMonth {

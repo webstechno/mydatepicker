@@ -22,6 +22,7 @@ export class SampleDatePickerAccessModifier implements OnInit {
     private myForm: FormGroup;
 
     private model: string = null;   // not initial date set (use null or empty string)
+    //private model: Object = {jsdate: new Date()};   // initialize today with jsdate property
     //private model: Object = {date: {year: 2018, month: 10, day: 9}};   // this example is initialized to specific date
 
     private selector: number = 0;
@@ -32,6 +33,7 @@ export class SampleDatePickerAccessModifier implements OnInit {
         console.log('onInit(): SampleDatePickerReactiveForms');
         this.myForm = this.formBuilder.group({
             //myDate: [null, Validators.required]   // not initial date set
+            //myDate: [{jsdate: new Date()}, Validators.required] // initialize today with jsdate property
             myDate: [{date: {year: 2018, month: 10, day: 9}}, Validators.required]   // this example is initialized to specific date
         });
     }
@@ -69,8 +71,7 @@ export class SampleDatePickerAccessModifier implements OnInit {
 
     resetDate(): void {
         // Reset date picker to specific date (today)
-        let date: Date = new Date();
-        this.myForm.reset({myDate: {date: {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}}});
+        this.myForm.reset({myDate: {jsdate: new Date()}});
     }
 
     clearDate(): void {
