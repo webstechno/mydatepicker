@@ -358,10 +358,6 @@
     border-radius: 2px;
 }
 
-.mydp .selectedmonth .monthvalue {
-    padding: 6px;
-}
-
 .mydp .headerbtncell {
     background-color: #FAFAFA;
     display: table-cell;
