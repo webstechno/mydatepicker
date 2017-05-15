@@ -26,7 +26,9 @@ export class SampleDatePickerNormal implements OnInit {
         openSelectorOnInputClick: false,
         showWeekNumbers: false,
         highlightDates: [],
-        markDates: []
+        markDates: [],
+        selectorHeight: '232px',
+        selectorWidth: '252px'
     };
     selectedDateNormal:string = '';
 
@@ -36,6 +38,7 @@ export class SampleDatePickerNormal implements OnInit {
     placeholderTxt:string = 'Select a date';
 
     dateFormats:Array<string> = new Array('dd mmm yyyy', 'yyyy-mm-dd', 'dd.mm.yyyy', 'dd/mm/yyyy', 'mm/dd/yyyy');
+    selectorSizes: Array<string> = new Array('normal', 'small');
 
     constructor() {
         let date = new Date();
@@ -89,6 +92,20 @@ export class SampleDatePickerNormal implements OnInit {
         copy.dateFormat = format;
         this.myDatePickerNormalOptions = copy;
         this.selectedDateNormal = '';
+    }
+
+    onSelectorSize(size:string) {
+      let copy = this.getCopyOfOptions();
+      if (size === 'normal') {
+          copy.selectorHeight = '232px';
+          copy.selectorWidth = '252px';
+          this.myDatePickerNormalOptions = copy;
+      }
+      else {
+          copy.selectorHeight = '200px';
+          copy.selectorWidth = '220px';
+          this.myDatePickerNormalOptions = copy;
+      }
     }
 
     onShowWeekNumbers(checked: boolean) {
