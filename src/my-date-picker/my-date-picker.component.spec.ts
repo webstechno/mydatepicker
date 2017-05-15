@@ -1565,6 +1565,38 @@ describe('MyDatePicker', () => {
         expect(de.styles['width']).toBe('20%');
     });
 
+    it('options - selector height', () => {
+        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
+        comp.options = {selectorHeight: '200px'};
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        let btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        let selector = getElement('.selector');
+        expect(selector).not.toBe(null);
+        expect(selector.styles['height']).toBe('200px');
+    });
+
+    it('options - selector width', () => {
+        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
+        comp.options = {selectorHeight: '220px'};
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        let btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        let selector = getElement('.selector');
+        expect(selector).not.toBe(null);
+        expect(selector.styles['height']).toBe('220px');
+    });
+
     it('options - selection text font size', () => {
         comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
         comp.options = {selectionTxtFontSize: '10px'};

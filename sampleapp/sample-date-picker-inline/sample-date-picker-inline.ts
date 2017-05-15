@@ -15,7 +15,9 @@ export class SampleDatePickerInline implements OnInit {
         inline: true,
         disableUntil: {year: 0, month: 0, day: 0},
         disableDays: [{year: 0, month: 0, day: 0}],
-        showWeekNumbers: true
+        showWeekNumbers: true,
+        selectorHeight: '232px',
+        selectorWidth: '252px'
     };
     private selectedDateInline: Object = {};
 
@@ -23,6 +25,7 @@ export class SampleDatePickerInline implements OnInit {
     private border: string = 'none';
     private locale:string = 'en';
 
+    private selectorSizes: Array<string> = new Array('normal', 'small');
     private locales:Array<string> = new Array('en', 'fr', 'ja', 'fi', 'es', 'hu', 'sv', 'nl', 'ru', 'uk', 'no', 'tr', 'pt-br', 'de', 'it', 'it-ch', 'pl', 'my', 'sk', 'sl', 'zh-cn', 'he', 'ro', 'ca', 'id', 'en-au', 'am-et', 'cs', 'el', 'kk', 'th', 'ko-kr', 'da', 'lt');
 
     constructor() {}
@@ -33,6 +36,20 @@ export class SampleDatePickerInline implements OnInit {
 
     onChangeLocale(locale:string) {
         this.locale = locale;
+    }
+
+    onSelectorSize(size:string) {
+        let copy = this.getCopyOfOptions();
+        if (size === 'normal') {
+            copy.selectorHeight = '232px';
+            copy.selectorWidth = '252px';
+            this.myDatePickerInlineOptions = copy;
+        }
+        else {
+            copy.selectorHeight = '200px';
+            copy.selectorWidth = '220px';
+            this.myDatePickerInlineOptions = copy;
+        }
     }
 
     onDisablePast(checked:boolean) {

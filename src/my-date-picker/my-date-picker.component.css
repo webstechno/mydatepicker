@@ -56,7 +56,6 @@
     margin-top: 2px;
     margin-left: -1px;
     position: absolute;
-    width: 252px;
     padding: 0;
     border: 1px solid #CCC;
     z-index: 100;
@@ -244,6 +243,7 @@
 .mydp .yeartable {
     table-layout: fixed;
     width: 100%;
+    height: calc(100% - 30px);
     background-color: #FFF;
     font-size: 14px;
 }
@@ -283,19 +283,14 @@
     border-right: 1px solid #BBB;
 }
 
-.mydp .daycell {
-    height: 30px;
-}
-
 .mydp .monthcell {
     background-color: #FAFAFA;
-    height: 50px;
-    width: 33.3333%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .mydp .yearcell {
     background-color: #FAFAFA;
-    height: 30px;
     width: 20%;
 }
 
@@ -358,17 +353,13 @@
 .mydp .selectedday .datevalue,
 .mydp .selectedmonth .monthvalue,
 .mydp .selectedyear .yearvalue {
-    border: 1px solid #004198;
+    border: none;
     background-color: #8EBFFF !important;
     border-radius: 2px;
 }
 
 .mydp .selectedmonth .monthvalue {
     padding: 6px;
-}
-
-.mydp .selectedyear .yearvalue {
-    padding: 2px;
 }
 
 .mydp .headerbtncell {
@@ -379,7 +370,6 @@
 
 .mydp .yearchangebtncell {
     text-align: center;
-    height: 25px;
     background-color: #FAFAFA;
 }
 
