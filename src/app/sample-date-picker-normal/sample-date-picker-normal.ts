@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MyDatePicker, IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur} from 'mydatepicker';
+import {MyDatePicker, IMyDpOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur} from 'mydatepicker';
 
 @Component({
     selector: 'sample-date-picker-normal',
@@ -11,7 +11,7 @@ export class SampleDatePickerNormal implements OnInit {
 
     @ViewChild('mydp') mydp: MyDatePicker;
 
-    myDatePickerNormalOptions: IMyOptions = {
+    myDatePickerNormalOptions: IMyDpOptions = {
         todayBtnTxt: 'Today',
         dateFormat: 'dd mmm yyyy',
         firstDayOfWeek: 'mo',
@@ -172,7 +172,7 @@ export class SampleDatePickerNormal implements OnInit {
         console.log('onInputFocusBlur(): Reason: ', event. reason, ' - Value: ', event.value);
     }
 
-    getCopyOfOptions() {
+    getCopyOfOptions(): IMyDpOptions {
         return JSON.parse(JSON.stringify(this.myDatePickerNormalOptions));
     }
 }

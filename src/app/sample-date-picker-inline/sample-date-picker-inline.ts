@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged} from 'mydatepicker';
+import {IMyDpOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged} from 'mydatepicker';
 
 @Component({
     selector: 'sample-date-picker-inline',
@@ -9,7 +9,7 @@ import {IMyOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged} 
 
 export class SampleDatePickerInline implements OnInit {
 
-    myDatePickerInlineOptions: IMyOptions = {
+    myDatePickerInlineOptions: IMyDpOptions = {
         inline: true,
         disableUntil: {year: 0, month: 0, day: 0},
         disableHeaderButtons: true
@@ -39,7 +39,7 @@ export class SampleDatePickerInline implements OnInit {
         date.setDate(date.getDate() - 5);
 
         let copy = this.getCopyOfOptions();
-        copy.disableUntil = checked ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : {};
+        copy.disableUntil = checked ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : {year: 0, month: 0, day: 0};
         this.myDatePickerInlineOptions = copy;
     }
 
@@ -50,7 +50,7 @@ export class SampleDatePickerInline implements OnInit {
         date.setDate(date.getDate() + 5);
 
         let copy = this.getCopyOfOptions();
-        copy.disableSince = checked ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : {};
+        copy.disableSince = checked ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : {year: 0, month: 0, day: 0};
         this.myDatePickerInlineOptions = copy;
     }
 
@@ -90,7 +90,7 @@ export class SampleDatePickerInline implements OnInit {
         console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
-    getCopyOfOptions() {
+    getCopyOfOptions(): IMyDpOptions {
         return JSON.parse(JSON.stringify(this.myDatePickerInlineOptions));
     }
 }
