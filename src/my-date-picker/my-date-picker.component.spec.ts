@@ -1583,7 +1583,7 @@ describe('MyDatePicker', () => {
 
     it('options - selector width', () => {
         comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {selectorHeight: '220px'};
+        comp.options = {selectorWidth: '220px'};
 
         comp.parseOptions();
 
@@ -1594,7 +1594,7 @@ describe('MyDatePicker', () => {
         fixture.detectChanges();
         let selector = getElement('.selector');
         expect(selector).not.toBe(null);
-        expect(selector.styles['height']).toBe('220px');
+        expect(selector.styles['width']).toBe('220px');
     });
 
     it('options - selection text font size', () => {

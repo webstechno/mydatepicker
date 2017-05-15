@@ -57,3 +57,5 @@ export interface IMyOptions {
     ariaLabelPrevYear?: string;
     ariaLabelNextYear?: string;
 }
+
+export interface IMyDpOptions extends IMyOptions {}
