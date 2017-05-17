@@ -1,1 +1,1 @@
-export {MyDatePickerModule} from "./dist/my-date-picker.module";
+export {MyDatePickerModule, MyDatePicker} from "./dist/my-date-picker.module";

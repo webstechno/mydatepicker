@@ -157,7 +157,10 @@
                 </label>
             </td>
             <td>
-
+                <label>
+                    <span>Allow deselect date:</span>
+                    <input style="cursor: pointer" type="checkbox" (change)="onAllowDeselectDate($event.currentTarget.checked)" [checked]="true">
+                </label>
             </td>
         </tr>
     </table>

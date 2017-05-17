@@ -30,6 +30,7 @@ export interface IMyOptions {
     selectionTxtFontSize?: string;
     selectorHeight?: string;
     selectorWidth?: string;
+    allowDeselectDate?: boolean;
     inline?: boolean;
     showClearDateBtn?: boolean;
     showDecreaseDateBtn?: boolean;

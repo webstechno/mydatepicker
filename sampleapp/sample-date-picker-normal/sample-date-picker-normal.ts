@@ -55,7 +55,8 @@ export class SampleDatePickerNormal implements OnInit {
             10: 'October',
             11: 'November',
             12: 'December'
-        }
+        },
+        allowDeselectDate: true
     };
     private selectedDateNormal:string = '';
 
@@ -191,6 +192,12 @@ export class SampleDatePickerNormal implements OnInit {
         dates.push({year: 2017, month: 6, day: 1});
 
         copy.highlightDates = checked ? dates : [];
+        this.myDatePickerNormalOptions = copy;
+    }
+
+    onAllowDeselectDate(checked: boolean): void {
+        let copy = this.getCopyOfOptions();
+        copy.allowDeselectDate = checked;
         this.myDatePickerNormalOptions = copy;
     }
 

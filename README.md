@@ -221,6 +221,7 @@ Value of the __options__ attribute is a type of [IMyDpOptions](https://github.co
 | __showWeekNumbers__   | false | boolean | Are week numbers visible or not on calendar. Can be used if __firstDayOfWeek = mo__. |
 | __selectorHeight__   | 232px | string | Selector height. |
 | __selectorWidth__   | 252px | string | Selector width. |
+| __allowDeselectDate__   | true | boolean | Is deselect of selected date allowed or not. |
 | __inline__   | false | boolean | Show mydatepicker in inline mode. |
 | __showClearDateBtn__   | true | boolean | Is clear date button shown or not. Can be used if __inline = false__. |
 | __showDecreaseDateBtn__   | false | boolean | Is decrease date button shown or not. Can be used if __inline = false__. |

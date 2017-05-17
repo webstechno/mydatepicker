@@ -108,6 +108,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         selectionTxtFontSize: <string> "14px",
         selectorHeight: <string> "232px",
         selectorWidth: <string> "252px",
+        allowDeselectDate: <boolean> true,
         inline: <boolean> false,
         showClearDateBtn: <boolean> true,
         showDecreaseDateBtn: <boolean> false,
@@ -527,7 +528,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
         else if (cell.cmo === this.currMonthId) {
             // Current month day - if date is already selected clear it
-            if (this.utilService.isSameDate(cell.dateObj, this.selectedDate)) {
+            if (this.opts.allowDeselectDate && this.utilService.isSameDate(cell.dateObj, this.selectedDate)) {
                 this.clearDate();
             }
             else {
