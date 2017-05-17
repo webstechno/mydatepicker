@@ -354,7 +354,7 @@
 .mydp .selectedmonth .monthvalue,
 .mydp .selectedyear .yearvalue {
     border: none;
-    background-color: #8EBFFF !important;
+    background-color: #8EBFFF;
     border-radius: 2px;
 }
 
