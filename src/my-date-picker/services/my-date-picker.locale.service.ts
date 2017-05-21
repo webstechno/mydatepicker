@@ -282,7 +282,7 @@ export class LocaleService {
             todayBtnTxt: "Hôm nay",
             firstDayOfWeek: "mo",
             sunHighlight: true,
-        },
+        }
     };
 
     getLocaleOptions(locale: string): IMyOptions {

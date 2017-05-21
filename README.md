@@ -205,6 +205,8 @@ Value of the __options__ attribute is a type of [IMyDpOptions](https://github.co
 | __satHighlight__   | false | boolean | Saturday red colored on calendar. |
 | __highlightDates__   | no default value | Array<[IMyDate](https://github.com/kekeh/mydatepicker/blob/master/src/my-date-picker/interfaces/my-date.interface.ts)> | Dates red colored on calendar. For example: [{year: 2016, month: 11, day: 14}, {year: 2016, month: 1, day: 15}] |
 | __markCurrentDay__   | true | boolean | Is current day (today) marked on calendar. |
+| __markCurrentMonth__   | true | boolean | Is current month marked on calendar. Can be used if __monthSelector = true__. |
+| __markCurrentYear__   | true | boolean | Is current year marked on calendar. Can be used if __yearSelector = true__. |
 | __monthSelector__  | true | boolean | If month label is selected opens a selector of months. |
 | __yearSelector__  | true | boolean | If year label is selected opens a selector of years. |
 | __minYear__   | 1100 | number | Minimum allowed year in calendar. Cannot be less than 1100. |
@@ -264,7 +266,7 @@ Value of the __options__ attribute is a type of [IMyDpOptions](https://github.co
 An ISO 639-1 language code can be provided as shorthand for the following options (dayLabels, monthLabels, dateFormat, todayBtnTxt, firstDayOfWeek and sunHighlight).
 Currently supported languages: __en__, __fr__, __ja__, __fi__, __es__, __hu__, __sv__, __nl__, __ru__, __uk__, __no__, __tr__,
 __pt-br__, __de__, __it__, __it-ch__, __pl__, __my__, __sk__, __sl__, __zh-cn__, __he__, __ro__, __ca__, __id__, __en-au__, __am-et__, __cs__, __el__, __kk__,
-__th__, __ko-kr__, __da__ and __lt__.
+__th__, __ko-kr__, __da__, __lt__ and __vi__.
 
 The __locale__ options can be override by __options__ attribute.
 

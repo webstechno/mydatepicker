@@ -16,6 +16,8 @@ export interface IMyOptions {
     sunHighlight?: boolean;
     highlightDates?: Array<IMyDate>;
     markCurrentDay?: boolean;
+    markCurrentMonth?: boolean;
+    markCurrentYear?: boolean;
     disableUntil?: IMyDate;
     disableSince?: IMyDate;
     disableDays?: Array<IMyDate>;
