@@ -275,14 +275,22 @@ export class LocaleService {
             firstDayOfWeek: "mo",
             sunHighlight: true
         },
-        "bn": {
-            dayLabels: {su: "রবি", mo: "সোম", tu: "মঙ্গল", we: "বুধ", th: "বৃহঃ", fr: "শুক্র", sa: "শনি"},
-            monthLabels: { 1: "জানু", 2: "ফেব্রু", 3: "মার্চ", 4: "এপ্রিল", 5: "মে", 6: "জুন", 7: "জুলাই", 8: "আগস্ট", 9: "সেপ্টে", 10: "অক্টো", 11: "নভে", 12: "ডিসে" },
-            dateFormat: "dd-mm-yyyy",
-            todayBtnTxt: "আজ",
-            firstDayOfWeek: "su",
-            sunHighlight: true
-        }
+        "vi": {
+            dayLabels: {su: "CN", mo: "T2", tu: "T3", we: "T4", th: "T5", fr: "T6", sa: "T7"},
+            monthLabels: { 1: "THG 1", 2: "THG 2", 3: "THG 3", 4: "THG 4", 5: "THG 5", 6: "THG 6", 7: "THG 7", 8: "THG 8", 9: "THG 9", 10: "THG 10", 11: "THG 11", 12: "THG 12" },
+            dateFormat: "dd/mm/yyyy",
+            todayBtnTxt: "Hôm nay",
+            firstDayOfWeek: "mo",
+            sunHighlight: true,
+        },
+		"bn": {
+			dayLabels: {su: "রবি", mo: "সোম", tu: "মঙ্গল", we: "বুধ", th: "বৃহঃ", fr: "শুক্র", sa: "শনি"},
+			monthLabels: { 1: "জানু", 2: "ফেব্রু", 3: "মার্চ", 4: "এপ্রিল", 5: "মে", 6: "জুন", 7: "জুলাই", 8: "আগস্ট", 9: "সেপ্টে", 10: "অক্টো", 11: "নভে", 12: "ডিসে" },
+			dateFormat: "dd-mm-yyyy",
+			todayBtnTxt: "আজ",
+			firstDayOfWeek: "su",
+			sunHighlight: true
+		}
     };
 
     getLocaleOptions(locale: string): IMyOptions {
