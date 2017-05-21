@@ -274,7 +274,15 @@ export class LocaleService {
             todayBtnTxt: "Šianien",
             firstDayOfWeek: "mo",
             sunHighlight: true
-        }
+        },
+        "vi": {
+            dayLabels: {su: "CN", mo: "T2", tu: "T3", we: "T4", th: "T5", fr: "T6", sa: "T7"},
+            monthLabels: { 1: "THG 1", 2: "THG 2", 3: "THG 3", 4: "THG 4", 5: "THG 5", 6: "THG 6", 7: "THG 7", 8: "THG 8", 9: "THG 9", 10: "THG 10", 11: "THG 11", 12: "THG 12" },
+            dateFormat: "dd/mm/yyyy",
+            todayBtnTxt: "Hôm nay",
+            firstDayOfWeek: "mo",
+            sunHighlight: true,
+        },
     };
 
     getLocaleOptions(locale: string): IMyOptions {
