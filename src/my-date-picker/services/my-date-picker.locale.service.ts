@@ -274,6 +274,14 @@ export class LocaleService {
             todayBtnTxt: "Šianien",
             firstDayOfWeek: "mo",
             sunHighlight: true
+        },
+        "bn": {
+            dayLabels: {su: "রবি", mo: "সোম", tu: "মঙ্গল", we: "বুধ", th: "বৃহঃ", fr: "শুক্র", sa: "শনি"},
+            monthLabels: { 1: "জানু", 2: "ফেব্রু", 3: "মার্চ", 4: "এপ্রিল", 5: "মে", 6: "জুন", 7: "জুলাই", 8: "আগস্ট", 9: "সেপ্টে", 10: "অক্টো", 11: "নভে", 12: "ডিসে" },
+            dateFormat: "dd-mm-yyyy",
+            todayBtnTxt: "আজ",
+            firstDayOfWeek: "su",
+            sunHighlight: true
         }
     };
 
