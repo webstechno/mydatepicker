@@ -1,145 +1,180 @@
 <style>
-    .settingstable,
-    .pickertable {
-        width: 100%;
-        border: none;
-    }
-    .pickertable {
-        margin-top: 20px;
-    }
-    .settingstable tr td,
-    .pickertable tr td {
-        width: 50%;
-        border: none;
-    }
-    .pickertable tr td {
-        vertical-align: top;
-    }
-    .selectedText {
-        padding: 4px;
-        border-radius: 4px;
-        float:left;
-    }
+  .settingstable,
+  .pickertable {
+    width: 100%;
+    border: none;
+  }
+
+  .pickertable {
+    margin-top: 20px;
+  }
+
+  .settingstable tr td,
+  .pickertable tr td {
+    width: 50%;
+    border: none;
+  }
+
+  .pickertable tr td {
+    vertical-align: top;
+  }
+
+  .selectedText {
+    padding: 4px;
+    border-radius: 4px;
+    float: left;
+  }
+  .buttonrow {
+    margin: 15px 4px;
+  }
 </style>
 
 <div>
-    <table class="settingstable">
-        <tr>
-            <td>
-                <label>
-                    <span>Disable component:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)" [checked]="false">
-                </label>
-            </td>
-            <td>
-                <label>
-                    <span>Editable date field:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onEditableDateField($event.currentTarget.checked)" [checked]="true">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>
-                    <span>Show clear date button:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onShowClearDateButton($event.currentTarget.checked)" [checked]="true">
-                </label>
-            </td>
-            <td>
-                <label>
-                    <span>Show input field:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onShowInputField($event.currentTarget.checked)" [checked]="true">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>
-                    <span>Align selector right:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onAlignSelectorRight($event.currentTarget.checked)" [checked]="false">
-                </label>
-            </td>
-            <td>
-                <label>
-                    <span>Open selector top of input field:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onOpenSelectorTopOfInput($event.currentTarget.checked)" [checked]="false">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>
-                    <span>Show selector arrow:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onShowSelectorArrow($event.currentTarget.checked)" [checked]="true">
-                </label>
-            </td>
-            <td>
-                <label>
-                    <span>Mark today:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onMarkToday($event.currentTarget.checked)" [checked]="false">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>
-                    <span>Highligh today:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onHighlightToday($event.currentTarget.checked)" [checked]="false">
-                </label>
-            </td>
-            <td>
-                <label>
-                    <span>Show week numbers:</span>
-                    <input style="cursor: pointer" type="checkbox" (change)="onShowWeekNumbers($event.currentTarget.checked)" [checked]="false">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span style="margin-right: 10px">Date format:</span>
-                <span>
-                    <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;" (change)="onChangeDateFormat($event.target.value)">
+  <table class="settingstable">
+    <tr>
+      <td>
+        <label>
+          <span>Disable component:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onDisableComponent($event.currentTarget.checked)"
+                 [checked]="false">
+        </label>
+      </td>
+      <td>
+        <label>
+          <span>Editable date field:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onEditableDateField($event.currentTarget.checked)"
+                 [checked]="true">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>
+          <span>Show clear date button:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onShowClearDateButton($event.currentTarget.checked)"
+                 [checked]="true">
+        </label>
+      </td>
+      <td>
+        <label>
+          <span>Show input field:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onShowInputField($event.currentTarget.checked)"
+                 [checked]="true">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>
+          <span>Align selector right:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onAlignSelectorRight($event.currentTarget.checked)"
+                 [checked]="false">
+        </label>
+      </td>
+      <td>
+        <label>
+          <span>Open selector top of input field:</span>
+          <input style="cursor: pointer" type="checkbox"
+                 (change)="onOpenSelectorTopOfInput($event.currentTarget.checked)" [checked]="false">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>
+          <span>Show selector arrow:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onShowSelectorArrow($event.currentTarget.checked)"
+                 [checked]="true">
+        </label>
+      </td>
+      <td>
+        <label>
+          <span>Mark today:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onMarkToday($event.currentTarget.checked)"
+                 [checked]="false">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>
+          <span>Highligh today:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onHighlightToday($event.currentTarget.checked)"
+                 [checked]="false">
+        </label>
+      </td>
+      <td>
+        <label>
+          <span>Show week numbers:</span>
+          <input style="cursor: pointer" type="checkbox" (change)="onShowWeekNumbers($event.currentTarget.checked)"
+                 [checked]="false">
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span style="margin-right: 10px">Date format:</span>
+        <span>
+                    <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;"
+                            (change)="onChangeDateFormat($event.target.value)">
                         <option *ngFor="let f of dateFormats">{{f}}</option>
                     </select>
                 </span>
-            </td>
-            <td>
-              <span style="margin-right: 10px">Selector size:</span>
-              <span>
-                <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;" (change)="onSelectorSize($event.target.value)">
+      </td>
+      <td>
+        <span style="margin-right: 10px">Selector size:</span>
+        <span>
+                <select style="padding: 2px;cursor: pointer;font-size: 11px;min-width: 60px;"
+                        (change)="onSelectorSize($event.target.value)">
                     <option *ngFor="let s of selectorSizes">{{s}}</option>
                 </select>
             </span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button style="cursor: pointer" type="button" (click)="onToggleCalendar($event)"
-                        [ngStyle]="{'cursor': !myDatePickerNormalOptions.componentDisabled ? 'pointer': 'not-allowed'}"
-                        [disabled]="myDatePickerNormalOptions.componentDisabled">Toggle</button>
-                <button style="cursor: pointer" type="button" (click)="onClearDate($event)"
-                        [ngStyle]="{'cursor': !myDatePickerNormalOptions.componentDisabled ? 'pointer': 'not-allowed'}"
-                        [disabled]="myDatePickerNormalOptions.componentDisabled">Clear</button>
-            </td>
-        </tr>
-    </table>
+      </td>
+    </tr>
 
-    <table class="pickertable">
-        <tr>
-            <td>
-                <my-date-picker #mydp="mydatepicker" [options]="myDatePickerNormalOptions"
-                                (dateChanged)="onDateChanged($event)"
-                                (inputFieldChanged)="onInputFieldChanged($event)"
-                                (calendarViewChanged)="onCalendarViewChanged($event)"
-                                (calendarToggle)="onCalendarToggle($event)"
-                                (inputFocusBlur)="onInputFocusBlur($event)"
-                                [selDate]="selectedDateNormal" [placeholder]="placeholderTxt"></my-date-picker>
-            </td>
-            <td>
-                <div class="selectedText" [ngStyle]="{border: border}">
-                    {{selectedTextNormal}}
-                </div>
-            </td>
-        </tr>
-    </table>
+
+
+
+
+
+    <tr>
+      <td>
+        <a href="https://github.com/kekeh/mydatepicker#options-attribute">all options...</a>
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  </table>
+
+  <div class="buttonrow">
+    <button style="cursor: pointer" type="button" (click)="onToggleCalendar($event)"
+            [ngStyle]="{'cursor': !myDatePickerNormalOptions.componentDisabled ? 'pointer': 'not-allowed'}"
+            [disabled]="myDatePickerNormalOptions.componentDisabled">Toggle
+    </button>
+    <button style="cursor: pointer" type="button" (click)="onClearDate($event)"
+            [ngStyle]="{'cursor': !myDatePickerNormalOptions.componentDisabled ? 'pointer': 'not-allowed'}"
+            [disabled]="myDatePickerNormalOptions.componentDisabled">Clear
+    </button>
+  </div>
+
+
+  <table class="pickertable">
+    <tr>
+      <td>
+        <my-date-picker #mydp="mydatepicker" [options]="myDatePickerNormalOptions"
+                        (dateChanged)="onDateChanged($event)"
+                        (inputFieldChanged)="onInputFieldChanged($event)"
+                        (calendarViewChanged)="onCalendarViewChanged($event)"
+                        (calendarToggle)="onCalendarToggle($event)"
+                        (inputFocusBlur)="onInputFocusBlur($event)"
+                        [selDate]="selectedDateNormal" [placeholder]="placeholderTxt"></my-date-picker>
+      </td>
+      <td>
+        <div class="selectedText" [ngStyle]="{border: border}">
+          {{selectedTextNormal}}
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>
