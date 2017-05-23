@@ -290,6 +290,22 @@ export class LocaleService {
             todayBtnTxt: "আজ",
             firstDayOfWeek: "su",
             sunHighlight: true
+        },
+        "bg": {
+            dayLabels: {su: "нд", mo: "пн", tu: "вт", we: "ср", th: "чт", fr: "пт", sa: "сб"},
+            monthLabels: { 1: "яну.", 2: "фев.", 3: "март", 4: "апр.", 5: "май", 6: "юни", 7: "юли", 8: "авг.", 9: "сеп.", 10: "окт.", 11: "ное.", 12: "дек." },
+            dateFormat: "dd.mm.yyyy",
+            todayBtnTxt: "днес",
+            firstDayOfWeek: "mo",
+            sunHighlight: true
+        },
+        "hr": {
+            dayLabels: {su: "Ne", mo: "Po", tu: "Ul", we: "Sr", th: "Če", fr: "Pe", sa: "Su"},
+            monthLabels: { 1: "Sij", 2: "Vel", 3: "Ožu", 4: "Tra", 5: "Svi", 6: "Lip", 7: "Srp", 8: "Kol", 9: "Ruj", 10: "Lis", 11: "Stu", 12: "Pro" },
+            dateFormat: "dd.mm.yyyy.",
+            todayBtnTxt: "danas",
+            firstDayOfWeek: "su",
+            sunHighlight: true
         }
     };
 
