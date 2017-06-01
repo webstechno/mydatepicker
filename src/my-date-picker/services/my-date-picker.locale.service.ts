@@ -314,6 +314,14 @@ export class LocaleService {
             todayBtnTxt: "اليوم",
             firstDayOfWeek: "sa",
             sunHighlight: true
+        },
+        "is": {
+            dayLabels: {su: "sun", mo: "mán", tu: "þri", we: "mið", th: "fim", fr: "fös", sa: "lau"},
+            monthLabels: { 1: "jan", 2: "feb", 3: "mar", 4: "apr", 5: "maí", 6: "jún", 7: "júl", 8: "ágú", 9: "sep", 10: "okt", 11: "nóv", 12: "des" },
+            dateFormat: "dd.mm.yyyy",
+            todayBtnTxt: "Í dag",
+            firstDayOfWeek: "su",
+            sunHighlight: true,
         }
     };
 
