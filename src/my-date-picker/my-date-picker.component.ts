@@ -415,10 +415,10 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                 }
             }
         }
-        if (this.opts.inline) {
+        if (this.visibleMonth.year === 0 && this.visibleMonth.monthNbr === 0) {
             this.setVisibleMonth();
         }
-        else if (this.showSelector) {
+        else {
             this.generateCalendar(this.visibleMonth.monthNbr, this.visibleMonth.year, false);
         }
     }
