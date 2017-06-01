@@ -1525,6 +1525,9 @@ describe('MyDatePicker', () => {
 
         btndecrease.nativeElement.click();
 
+        fixture.detectChanges();
+        let btnclear = getElement('.btnclear');
+        btnclear.nativeElement.click();
 
         comp.options = {showDecreaseDateBtn: false};
         comp.parseOptions();
@@ -1581,6 +1584,10 @@ describe('MyDatePicker', () => {
         btnincrease.nativeElement.click();
 
         btnincrease.nativeElement.click();
+
+        fixture.detectChanges();
+        let btnclear = getElement('.btnclear');
+        btnclear.nativeElement.click();
 
 
         comp.options = {showIncreaseDateBtn: false};
