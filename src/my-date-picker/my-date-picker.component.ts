@@ -110,7 +110,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         selectionTxtFontSize: <string> "14px",
         selectorHeight: <string> "232px",
         selectorWidth: <string> "252px",
-        allowDeselectDate: <boolean> true,
+        allowDeselectDate: <boolean> false,
         inline: <boolean> false,
         showClearDateBtn: <boolean> true,
         showDecreaseDateBtn: <boolean> false,
@@ -419,6 +419,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             this.setVisibleMonth();
         }
         else {
+            this.visibleMonth.monthTxt = this.opts.monthLabels[this.visibleMonth.monthNbr];
             this.generateCalendar(this.visibleMonth.monthNbr, this.visibleMonth.year, false);
         }
     }

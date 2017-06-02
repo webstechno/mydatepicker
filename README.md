@@ -223,7 +223,7 @@ Value of the __options__ attribute is a type of [IMyDpOptions](https://github.co
 | __showWeekNumbers__   | false | boolean | Are week numbers visible or not on calendar. Can be used if __firstDayOfWeek = mo__. |
 | __selectorHeight__   | 232px | string | Selector height. |
 | __selectorWidth__   | 252px | string | Selector width. |
-| __allowDeselectDate__   | true | boolean | Is deselect of selected date allowed or not. |
+| __allowDeselectDate__   | false | boolean | Is deselect of selected date allowed or not. |
 | __inline__   | false | boolean | Show mydatepicker in inline mode. |
 | __showClearDateBtn__   | true | boolean | Is clear date button shown or not. Can be used if __inline = false__. |
 | __showDecreaseDateBtn__   | false | boolean | Is decrease date button shown or not. Can be used if __inline = false__. |
@@ -266,7 +266,7 @@ Value of the __options__ attribute is a type of [IMyDpOptions](https://github.co
 An ISO 639-1 language code can be provided as shorthand for the following options (dayLabels, monthLabels, dateFormat, todayBtnTxt, firstDayOfWeek and sunHighlight).
 Currently supported languages: __en__, __fr__, __ja__, __fi__, __es__, __hu__, __sv__, __nl__, __ru__, __uk__, __no__, __tr__,
 __pt-br__, __de__, __it__, __it-ch__, __pl__, __my__, __sk__, __sl__, __zh-cn__, __he__, __ro__, __ca__, __id__, __en-au__, __am-et__, __cs__, __el__, __kk__,
-__th__, __ko-kr__, __da__, __lt__, __vi__, __bn__, __bg__, __hr__ and __ar__.
+__th__, __ko-kr__, __da__, __lt__, __vi__, __bn__, __bg__, __hr__, __ar__ and __is__.
 
 The __locale__ options can be override by __options__ attribute.
 

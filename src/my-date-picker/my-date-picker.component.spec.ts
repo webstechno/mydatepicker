@@ -98,6 +98,9 @@ describe('MyDatePicker', () => {
         let date = new Date();
         comp.selectedMonth = {monthTxt: '', monthNbr: date.getMonth() + 1, year: date.getFullYear()};
 
+        comp.options = {allowDeselectDate: true};
+        comp.parseOptions();
+
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
         btnpicker.nativeElement.click();

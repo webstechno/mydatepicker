@@ -321,7 +321,7 @@ export class LocaleService {
             dateFormat: "dd.mm.yyyy",
             todayBtnTxt: "Í dag",
             firstDayOfWeek: "su",
-            sunHighlight: true,
+            sunHighlight: true
         }
     };
 
