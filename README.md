@@ -287,15 +287,14 @@ Type of the __selDate__ attribute can be a string or an [IMyDate](https://github
 
 ### defaultMonth attribute
 
-If __selDate__ is not specified, when the datepicker is opened, it will
+If __selDate__ is not specified, when the calendar is opened, it will
 ordinarily default to selecting the current date. If you would prefer
 a different year and month to be the default for a freshly chosen date
-picking operation, specify a __[defaultMonth]__ attribute.
+picking operation, specify a __defaultMonth__ attribute.
 
-Value of the __[defaultMonth]__ attribute is a string which contain year number and
-month number separated by delimiter. The delimiter can be any special character.
-For example the value of the __[defaultMonth]__ attribute can be: __2016.08__,
-__08-2016__, __08/2016__.
+Value of the defaultMonth attribute can be:
+  * [IMyDefaultMonth](https://github.com/kekeh/mydatepicker/blob/master/src/my-date-picker/interfaces/my-default-month.interface.ts) object. The value of defMonth property can be a string which contain year number and month number separated by delimiter. The delimiter can be any special character. For example: __08-2016__ or __08/2016__.
+  * a string which contain year number and month number separated by delimiter. The delimiter can be any special character. For example: __08-2016__ or __08/2016__.
 
 [Here](https://github.com/kekeh/mydatepicker/wiki/Initialize-with-defaultMonth-attribute) is an example on how to use this attribute.
 

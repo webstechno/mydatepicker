@@ -390,9 +390,12 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.weekDays.length = 0;
         this.parseOptions();
 
-        let dmChange = false;
+        let dmChange: boolean = false;
         if (changes.hasOwnProperty("defaultMonth")) {
-            let dm: string = changes["defaultMonth"].currentValue;
+            let dm: any = changes["defaultMonth"].currentValue;
+            if (typeof dm === "object") {
+                dm = dm.defMonth;
+            }
             if (dm !== null && dm !== undefined && dm !== "") {
                 this.selectedMonth = this.parseSelectedMonth(dm);
             }
