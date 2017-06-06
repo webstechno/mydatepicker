@@ -390,6 +390,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.weekDays.length = 0;
         this.parseOptions();
 
+        let dmChange = false;
         if (changes.hasOwnProperty("defaultMonth")) {
             let dm: string = changes["defaultMonth"].currentValue;
             if (dm !== null && dm !== undefined && dm !== "") {
@@ -398,6 +399,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             else {
                 this.selectedMonth = {monthTxt: "", monthNbr: 0, year: 0};
             }
+            dmChange = true;
         }
 
         if (changes.hasOwnProperty("selDate")) {
@@ -415,7 +417,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                 }
             }
         }
-        if (this.visibleMonth.year === 0 && this.visibleMonth.monthNbr === 0) {
+        if (this.visibleMonth.year === 0 && this.visibleMonth.monthNbr === 0 || dmChange) {
             this.setVisibleMonth();
         }
         else {
