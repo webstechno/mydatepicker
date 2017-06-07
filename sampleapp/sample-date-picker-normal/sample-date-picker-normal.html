@@ -168,12 +168,15 @@
     <div class="buttondiv">
         <button type="button" (click)="onToggleSelector($event)" [disabled]="disabled" [ngStyle]="{'cursor': disabled ? 'not-allowed' : 'pointer'}">Toggle selector</button>
         <button type="button" (click)="clearDate()" [disabled]="selectedDateNormal===''||disabled" [ngStyle]="{'cursor': disabled ? 'not-allowed' : 'pointer'}">Clear Date</button>
+
+        <button type="button" style="cursor: pointer" (click)="onOpenSelector($event);$event.stopPropagation()">Open</button>
+        <button type="button" style="cursor: pointer" (click)="onCloseSelector($event);$event.stopPropagation()">Close</button>
     </div>
 
     <table class="pickertable">
         <tr>
             <td>
-                <my-date-picker [options]="myDatePickerNormalOptions" #mydp="mydatepicker"
+                <my-date-picker [options]="myDatePickerNormalOptions" #mydp="mydatepicker" [selector]="selector"
                                 (dateChanged)="onDateChanged($event)" (inputFieldChanged)="onInputFieldChanged($event)"
                                 (calendarViewChanged)="onCalendarViewChanged($event)" (calendarToggle)="onCalendarToggle($event)" (inputFocusBlur)="onInputFocusBlur($event)"
                                 [selDate]="selectedDateNormal" [placeholder]="placeholder" [disabled]="disabled"></my-date-picker>

@@ -16,7 +16,7 @@ export const MYDP_VALUE_ACCESSOR: any = {
     multi: true
 };
 
-enum CalToggle {Open = 1, CloseByDateSel = 2, CloseByCalBtn = 3, CloseByOutClick = 4, CloseByEsc = 5}
+enum CalToggle {Open = 1, CloseByDateSel = 2, CloseByCalBtn = 3, CloseByOutClick = 4, CloseByEsc = 5, CloseByApi = 6}
 enum Year {min = 1100, max = 9100}
 enum InputFocusBlur {focus = 1, blur = 2}
 enum KeyCode {enter = 13, esc = 27, space = 32}
@@ -367,8 +367,21 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty("selector") && changes["selector"].currentValue > 0) {
-            this.openBtnClicked();
+        if (changes.hasOwnProperty("selector")) {
+            let s: any = changes["selector"].currentValue;
+            if (typeof s === "object") {
+                if (s.open) {
+                    this.showSelector = true;
+                    this.openSelector(CalToggle.Open);
+                }
+                else {
+                    this.showSelector = false;
+                    this.closeSelector(CalToggle.CloseByApi);
+                }
+            }
+            else if (s > 0) {
+                this.openBtnClicked();
+            }
         }
 
         if (changes.hasOwnProperty("placeholder")) {
@@ -453,12 +466,20 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.showSelector = !this.showSelector;
         this.cdr.detectChanges();
         if (this.showSelector) {
-            this.setVisibleMonth();
-            this.calendarToggle.emit(CalToggle.Open);
+            this.openSelector(CalToggle.Open);
         }
         else {
-            this.calendarToggle.emit(CalToggle.CloseByCalBtn);
+            this.closeSelector(CalToggle.CloseByCalBtn);
         }
+    }
+
+    openSelector(reason: number): void {
+        this.setVisibleMonth();
+        this.calendarToggle.emit(reason);
+    }
+
+    closeSelector(reason: number): void {
+        this.calendarToggle.emit(reason);
     }
 
     setVisibleMonth(): void {

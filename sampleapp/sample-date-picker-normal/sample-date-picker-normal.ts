@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IMyDpOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur, IMyMarkedDate, IMyDate} from '../../src/my-date-picker/interfaces';
+import {IMyDpOptions, IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur, IMyMarkedDate, IMyDate, IMySelector} from '../../src/my-date-picker/interfaces';
 import {MyDatePicker} from '../../src/my-date-picker/my-date-picker.component';
 
 declare var require:any;
@@ -65,6 +65,10 @@ export class SampleDatePickerNormal implements OnInit {
 
     private placeholder: string = 'Select date';
     private disabled: boolean = false;
+
+    private selector: IMySelector = {
+        open: false
+    };
 
     constructor() {}
 
@@ -203,7 +207,20 @@ export class SampleDatePickerNormal implements OnInit {
 
     onToggleSelector(event: any) {
         event.stopPropagation();
+        // call function of mydatepicker
         this.mydp.openBtnClicked();
+    }
+
+    onOpenSelector() {
+        this.selector = {
+            open: true
+        };
+    }
+
+    onCloseSelector() {
+        this.selector = {
+            open: false
+        };
     }
 
     ngOnInit() {

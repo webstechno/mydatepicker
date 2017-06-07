@@ -293,7 +293,7 @@ a different year and month to be the default for a freshly chosen date
 picking operation, specify a __defaultMonth__ attribute.
 
 Value of the defaultMonth attribute can be:
-  * [IMyDefaultMonth](https://github.com/kekeh/mydatepicker/blob/master/src/my-date-picker/interfaces/my-default-month.interface.ts) object. The value of defMonth property can be a string which contain year number and month number separated by delimiter. The delimiter can be any special character. For example: __08-2016__ or __08/2016__.
+  * [IMyDefaultMonth](https://github.com/kekeh/mydatepicker/blob/master/src/my-date-picker/interfaces/my-default-month.interface.ts) object. The value of __defMonth__ property can be a string which contain year number and month number separated by delimiter. The delimiter can be any special character. For example: __08-2016__ or __08/2016__.
   * a string which contain year number and month number separated by delimiter. The delimiter can be any special character. For example: __08-2016__ or __08/2016__.
 
 [Here](https://github.com/kekeh/mydatepicker/wiki/Initialize-with-defaultMonth-attribute) is an example on how to use this attribute.
@@ -308,8 +308,10 @@ Boolean value indicating is the component disabled or not. [Here](https://github
 
 ### selector attribute
 
-Selector can be opened or closed using this attribute. [Here](https://github.com/kekeh/mydatepicker/wiki/Open-selector-with-selector-attribute) is an example on how to use this attribute.
-Another way is to call a function of mydatepicker. [Here](https://github.com/kekeh/mydatepicker/wiki/Calling-date-picker-function) is an example.
+Selector can be opened or closed using this attribute. Value of the selector attribute can be:
+  * [IMySelector](https://github.com/kekeh/mydatepicker/blob/master/src/my-date-picker/interfaces/my-selector.interface.ts) object. The value of __open__ property is a boolean value indicating the state of the selector.
+
+[Here](https://github.com/kekeh/mydatepicker/wiki/Open-selector-with-selector-attribute) is an example on how to use this attribute. Another way is to call a function of mydatepicker. [Here](https://github.com/kekeh/mydatepicker/wiki/Calling-date-picker-function) is an example.
 
 ## Callbacks
 
@@ -369,6 +371,7 @@ Another way is to call a function of mydatepicker. [Here](https://github.com/kek
       * 3 = calendar closed by calendar button
       * 4 = calendar closed by outside click (document click)
       * 5 = calendar closed by ESC key
+      * 6 = calendar closed by API call
 
   * Example of the calendar toggle callback:
   ```js
